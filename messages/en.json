@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "listings": "Listings",
+    "blog": "Articles",
+    "contact": "Work with us"
+  },
+  "hero": {
+    "label": "Your Trusted Real Estate Partner",
+    "headline": "Find Your Perfect Place to Call Home",
+    "subheadline": "We help you discover, evaluate, and secure the finest properties — with clarity, care, and expertise.",
+    "cta_primary": "Explore Listings",
+    "cta_secondary": "Work with us"
+  },
+  "listings": {
+    "title": "Featured Properties",
+    "subtitle": "Handpicked homes that balance beauty and practicality.",
+    "view_all": "View All Listings",
+    "status": {
+      "for_sale": "For Sale",
+      "sold": "Sold",
+      "rented": "Rented"
+    },
+    "details": {
+      "beds": "Beds",
+      "baths": "Baths",
+      "sqft": "Sq Ft",
+      "price": "Price"
+    },
+    "view_property": "View Property"
+  },
+  "features": {
+    "label": "Why Choose Us",
+    "title": "A Smarter Way to Buy, Sell & Rent",
+    "items": [
+      {
+        "title": "Expert Local Knowledge",
+        "description": "Our agents live and breathe the neighborhoods they serve, giving you an insider advantage in every transaction."
+      },
+      {
+        "title": "Transparent Process",
+        "description": "No surprises. We walk you through every step clearly, from first viewing to closing day."
+      },
+      {
+        "title": "Tailored Strategy",
+        "description": "Every client gets a custom plan built around their goals, timeline, and budget."
+      },
+      {
+        "title": "Full-Service Support",
+        "description": "From mortgage guidance to move-in coordination, we handle the details so you don't have to."
+      }
+    ]
+  },
+  "testimonials": {
+    "label": "Client Stories",
+    "title": "What Our Clients Say"
+  },
+  "cta": {
+    "label": "Your Next Move",
+    "title": "Ready to Find Your Dream Home?",
+    "subtitle": "Let's start with a conversation. Book a free call with one of our agents today.",
+    "button": "Book a Call"
+  },
+  "blog": {
+    "label": "From Our Journal",
+    "title": "Insights & Market Updates",
+    "subtitle": "Expert perspectives on real estate trends, tips, and local market news.",
+    "read_more": "Read Article",
+    "view_all": "View All Articles",
+    "min_read": "min read"
+  },
+  "about": {
+    "label": "Our Story",
+    "title": "A Real Estate Agency Built on Trust",
+    "subtitle": "We believe finding a home should feel exciting, not stressful. That belief guides everything we do.",
+    "stats": [
+      { "value": "500+", "label": "Homes Sold" },
+      { "value": "12", "label": "Years Experience" },
+      { "value": "98%", "label": "Client Satisfaction" },
+      { "value": "3", "label": "Cities Covered" }
+    ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Fill out the form and one of our agents will reach out within 24 hours.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "property": "Property of Interest",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "success_title": "Message Sent!",
+      "success_body": "Thank you for reaching out. We'll be in touch within 24 hours.",
+      "error": "Something went wrong. Please try again."
+    }
+  },
+  "footer": {
+    "tagline": "Your trusted guide to finding the perfect home.",
+    "links": "Quick Links",
+    "contact": "Contact",
+    "socials": "Follow Us",
+    "rights": "All rights reserved."
+  },
+  "property": {
+    "overview": "Overview",
+    "amenities": "Amenities",
+    "location": "Location",
+    "gallery": "Gallery",
+    "similar": "Similar Listings",
+    "similar_subtitle": "Other properties with similar features and appeal.",
+    "book_viewing": "Book a Viewing",
+    "share": "Share",
+    "sqft_label": "Living Space",
+    "beds_label": "Total Beds",
+    "baths_label": "Total Bath",
+    "parking_label": "Parking",
+    "type_label": "Type / Category"
+  }
+}

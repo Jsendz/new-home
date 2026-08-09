@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "listings": "Propriétés",
+    "blog": "Articles",
+    "contact": "Travailler avec nous"
+  },
+  "hero": {
+    "label": "Votre Partenaire Immobilier de Confiance",
+    "headline": "Trouvez l'Endroit Parfait à Appeler Chez Soi",
+    "subheadline": "Nous vous aidons à découvrir, évaluer et sécuriser les meilleures propriétés — avec clarté, soin et expertise.",
+    "cta_primary": "Explorer les Propriétés",
+    "cta_secondary": "Prendre Rendez-vous"
+  },
+  "listings": {
+    "title": "Propriétés en Vedette",
+    "subtitle": "Des maisons soigneusement sélectionnées alliant beauté et praticité.",
+    "view_all": "Voir Toutes les Propriétés",
+    "status": {
+      "for_sale": "À Vendre",
+      "sold": "Vendu",
+      "rented": "Loué"
+    },
+    "details": {
+      "beds": "Ch.",
+      "baths": "SDB",
+      "sqft": "m²",
+      "price": "Prix"
+    },
+    "view_property": "Voir la Propriété"
+  },
+  "features": {
+    "label": "Pourquoi Nous Choisir",
+    "title": "Une Façon Plus Intelligente d'Acheter, Vendre et Louer",
+    "items": [
+      {
+        "title": "Expertise Locale",
+        "description": "Nos agents connaissent parfaitement les quartiers qu'ils servent, vous donnant un avantage privilégié dans chaque transaction."
+      },
+      {
+        "title": "Processus Transparent",
+        "description": "Pas de surprises. Nous vous guidons à chaque étape, de la première visite au jour de la signature."
+      },
+      {
+        "title": "Stratégie Sur Mesure",
+        "description": "Chaque client reçoit un plan personnalisé basé sur ses objectifs, son calendrier et son budget."
+      },
+      {
+        "title": "Accompagnement Complet",
+        "description": "Du conseil hypothécaire à la coordination du déménagement, nous gérons les détails à votre place."
+      }
+    ]
+  },
+  "testimonials": {
+    "label": "Témoignages",
+    "title": "Ce Que Disent Nos Clients"
+  },
+  "cta": {
+    "label": "Votre Prochain Pas",
+    "title": "Prêt à Trouver Votre Maison de Rêve ?",
+    "subtitle": "Commençons par une conversation. Réservez un appel gratuit avec l'un de nos agents aujourd'hui.",
+    "button": "Prendre Rendez-vous"
+  },
+  "blog": {
+    "label": "Notre Journal",
+    "title": "Perspectives et Actualités du Marché",
+    "subtitle": "Analyses expertes sur les tendances immobilières, conseils et actualités du marché local.",
+    "read_more": "Lire l'Article",
+    "view_all": "Voir Tous les Articles",
+    "min_read": "min de lecture"
+  },
+  "about": {
+    "label": "Notre Histoire",
+    "title": "Une Agence Immobilière Fondée sur la Confiance",
+    "subtitle": "Nous croyons que trouver un foyer doit être excitant, pas stressant.",
+    "stats": [
+      { "value": "500+", "label": "Maisons Vendues" },
+      { "value": "12", "label": "Ans d'Expérience" },
+      { "value": "98%", "label": "Satisfaction Client" },
+      { "value": "3", "label": "Villes Couvertes" }
+    ]
+  },
+  "contact": {
+    "title": "Nous Contacter",
+    "subtitle": "Remplissez le formulaire et l'un de nos agents vous contactera dans les 24 heures.",
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse Email",
+      "phone": "Numéro de Téléphone",
+      "property": "Propriété d'Intérêt",
+      "message": "Votre Message",
+      "submit": "Envoyer le Message",
+      "success_title": "Message Envoyé !",
+      "success_body": "Merci de nous avoir contactés. Nous reviendrons vers vous dans les 24 heures.",
+      "error": "Quelque chose s'est mal passé. Veuillez réessayer."
+    }
+  },
+  "footer": {
+    "tagline": "Votre guide de confiance pour trouver la maison parfaite.",
+    "links": "Liens Rapides",
+    "contact": "Contact",
+    "socials": "Suivez-nous",
+    "rights": "Tous droits réservés."
+  },
+  "property": {
+    "overview": "Aperçu",
+    "amenities": "Équipements",
+    "location": "Emplacement",
+    "gallery": "Galerie",
+    "similar": "Propriétés Similaires",
+    "similar_subtitle": "Autres propriétés avec des caractéristiques et un attrait similaires.",
+    "book_viewing": "Réserver une Visite",
+    "share": "Partager",
+    "sqft_label": "Espace de Vie",
+    "beds_label": "Chambres",
+    "baths_label": "Salles de Bain",
+    "parking_label": "Stationnement",
+    "type_label": "Type / Catégorie"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Inici",
+    "about": "Sobre nosaltres",
+    "listings": "Propietats",
+    "blog": "Articles",
+    "contact": "Treballa amb nosaltres"
+  },
+  "hero": {
+    "label": "El vostre soci immobiliari de confiança",
+    "headline": "Troba el lloc perfecte per anomenar-lo llar",
+    "subheadline": "T'ajudem a descobrir, avaluar i assegurar les millors propietats — amb claredat, cura i experiència.",
+    "cta_primary": "Explorar propietats",
+    "cta_secondary": "Treballa amb nosaltres"
+  },
+  "listings": {
+    "title": "Propietats destacades",
+    "subtitle": "Cases seleccionades que combinen bellesa i practicitat.",
+    "view_all": "Veure totes les propietats",
+    "status": {
+      "for_sale": "En venda",
+      "sold": "Venuda",
+      "rented": "Llogada"
+    },
+    "details": {
+      "beds": "Habitacions",
+      "baths": "Banys",
+      "sqft": "m²",
+      "price": "Preu"
+    },
+    "view_property": "Veure propietat"
+  },
+  "features": {
+    "label": "Per què triar-nos",
+    "title": "Una manera més intel·ligent de comprar, vendre i llogar",
+    "items": [
+      {
+        "title": "Coneixement local expert",
+        "description": "Els nostres agents coneixen a fons els barris on treballen, donant-te un avantatge privilegiat en cada transacció."
+      },
+      {
+        "title": "Procés transparent",
+        "description": "Sense sorpreses. Et guiem en cada pas, des de la primera visita fins al dia del tancament."
+      },
+      {
+        "title": "Estratègia personalitzada",
+        "description": "Cada client rep un pla a mida basat en els seus objectius, terminis i pressupost."
+      },
+      {
+        "title": "Suport complet",
+        "description": "Des de l'assessorament hipotecari fins a la coordinació del trasllat, gestionem els detalls perquè no hagis de fer-ho tu."
+      }
+    ]
+  },
+  "testimonials": {
+    "label": "Històries de clients",
+    "title": "Què diuen els nostres clients"
+  },
+  "cta": {
+    "label": "El teu proper pas",
+    "title": "Preparat per trobar la teva llar ideal?",
+    "subtitle": "Comencem amb una conversa. Reserva una trucada gratuïta amb un dels nostres agents avui.",
+    "button": "Reserva una trucada"
+  },
+  "blog": {
+    "label": "Del nostre diari",
+    "title": "Perspectives i novetats del mercat",
+    "subtitle": "Anàlisis expertes sobre tendències immobiliàries, consells i notícies del mercat local.",
+    "read_more": "Llegir l'article",
+    "view_all": "Veure tots els articles",
+    "min_read": "min de lectura"
+  },
+  "about": {
+    "label": "La nostra història",
+    "title": "Una agència immobiliària construïda sobre la confiança",
+    "subtitle": "Creiem que trobar una llar hauria de ser emocionant, no estressant.",
+    "stats": [
+      { "value": "500+", "label": "Cases venudes" },
+      { "value": "12", "label": "Anys d'experiència" },
+      { "value": "98%", "label": "Satisfacció del client" },
+      { "value": "3", "label": "Ciutats cobertes" }
+    ]
+  },
+  "contact": {
+    "title": "Posa't en contacte",
+    "subtitle": "Omple el formulari i un dels nostres agents et contactarà en 24 hores.",
+    "form": {
+      "name": "Nom complet",
+      "email": "Adreça de correu electrònic",
+      "phone": "Número de telèfon",
+      "property": "Propietat d'interès",
+      "message": "El teu missatge",
+      "submit": "Enviar missatge",
+      "success_title": "Missatge enviat!",
+      "success_body": "Gràcies per posar-te en contacte. Et respondrem en 24 hores.",
+      "error": "Alguna cosa ha anat malament. Si us plau, torna-ho a intentar."
+    }
+  },
+  "footer": {
+    "tagline": "La teva guia de confiança per trobar la llar perfecta.",
+    "links": "Enllaços ràpids",
+    "contact": "Contacte",
+    "socials": "Segueix-nos",
+    "rights": "Tots els drets reservats."
+  },
+  "property": {
+    "overview": "Resum",
+    "amenities": "Serveis",
+    "location": "Ubicació",
+    "gallery": "Galeria",
+    "similar": "Propietats similars",
+    "similar_subtitle": "Altres propietats amb característiques i atractiu similars.",
+    "book_viewing": "Reservar una visita",
+    "share": "Compartir",
+    "sqft_label": "Espai habitable",
+    "beds_label": "Habitacions",
+    "baths_label": "Banys",
+    "parking_label": "Aparcament",
+    "type_label": "Tipus / Categoria"
+  }
+}

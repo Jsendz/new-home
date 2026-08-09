@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "listings": "Propiedades",
+    "blog": "Artículos",
+    "contact": "Trabaja con nosotros"
+  },
+  "hero": {
+    "label": "Tu Socio Inmobiliario de Confianza",
+    "headline": "Encuentra el Lugar Perfecto para Llamar Hogar",
+    "subheadline": "Te ayudamos a descubrir, evaluar y asegurar las mejores propiedades — con claridad, cuidado y experiencia.",
+    "cta_primary": "Ver Propiedades",
+    "cta_secondary": "Reservar Llamada"
+  },
+  "listings": {
+    "title": "Propiedades Destacadas",
+    "subtitle": "Hogares cuidadosamente seleccionados que equilibran belleza y practicidad.",
+    "view_all": "Ver Todas las Propiedades",
+    "status": {
+      "for_sale": "En Venta",
+      "sold": "Vendido",
+      "rented": "Alquilado"
+    },
+    "details": {
+      "beds": "Hab.",
+      "baths": "Baños",
+      "sqft": "m²",
+      "price": "Precio"
+    },
+    "view_property": "Ver Propiedad"
+  },
+  "features": {
+    "label": "¿Por Qué Elegirnos?",
+    "title": "Una Forma Más Inteligente de Comprar, Vender y Alquilar",
+    "items": [
+      {
+        "title": "Conocimiento Local Experto",
+        "description": "Nuestros agentes viven y respiran los vecindarios que sirven, dándote una ventaja privilegiada en cada transacción."
+      },
+      {
+        "title": "Proceso Transparente",
+        "description": "Sin sorpresas. Te guiamos en cada paso, desde la primera visita hasta el día del cierre."
+      },
+      {
+        "title": "Estrategia Personalizada",
+        "description": "Cada cliente recibe un plan a medida basado en sus objetivos, tiempo disponible y presupuesto."
+      },
+      {
+        "title": "Soporte Completo",
+        "description": "Desde orientación hipotecaria hasta coordinación de mudanza, manejamos los detalles por ti."
+      }
+    ]
+  },
+  "testimonials": {
+    "label": "Historias de Clientes",
+    "title": "Lo Que Dicen Nuestros Clientes"
+  },
+  "cta": {
+    "label": "Tu Próximo Paso",
+    "title": "¿Listo para Encontrar Tu Hogar Ideal?",
+    "subtitle": "Empecemos con una conversación. Reserva una llamada gratuita con uno de nuestros agentes hoy.",
+    "button": "Reservar Llamada"
+  },
+  "blog": {
+    "label": "Nuestro Diario",
+    "title": "Perspectivas y Actualizaciones del Mercado",
+    "subtitle": "Perspectivas expertas sobre tendencias inmobiliarias, consejos y noticias del mercado local.",
+    "read_more": "Leer Artículo",
+    "view_all": "Ver Todos los Artículos",
+    "min_read": "min de lectura"
+  },
+  "about": {
+    "label": "Nuestra Historia",
+    "title": "Una Agencia Inmobiliaria Construida sobre la Confianza",
+    "subtitle": "Creemos que encontrar un hogar debe sentirse emocionante, no estresante.",
+    "stats": [
+      { "value": "500+", "label": "Casas Vendidas" },
+      { "value": "12", "label": "Años de Experiencia" },
+      { "value": "98%", "label": "Satisfacción del Cliente" },
+      { "value": "3", "label": "Ciudades Cubiertas" }
+    ]
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Completa el formulario y uno de nuestros agentes se pondrá en contacto en 24 horas.",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "phone": "Número de Teléfono",
+      "property": "Propiedad de Interés",
+      "message": "Tu Mensaje",
+      "submit": "Enviar Mensaje",
+      "success_title": "¡Mensaje Enviado!",
+      "success_body": "Gracias por contactarnos. Nos pondremos en contacto en 24 horas.",
+      "error": "Algo salió mal. Por favor, inténtalo de nuevo."
+    }
+  },
+  "footer": {
+    "tagline": "Tu guía de confianza para encontrar el hogar perfecto.",
+    "links": "Enlaces Rápidos",
+    "contact": "Contacto",
+    "socials": "Síguenos",
+    "rights": "Todos los derechos reservados."
+  },
+  "property": {
+    "overview": "Resumen",
+    "amenities": "Comodidades",
+    "location": "Ubicación",
+    "gallery": "Galería",
+    "similar": "Propiedades Similares",
+    "similar_subtitle": "Otras propiedades con características y atractivo similares.",
+    "book_viewing": "Reservar Visita",
+    "share": "Compartir",
+    "sqft_label": "Espacio Habitable",
+    "beds_label": "Habitaciones",
+    "baths_label": "Baños",
+    "parking_label": "Estacionamiento",
+    "type_label": "Tipo / Categoría"
+  }
+}

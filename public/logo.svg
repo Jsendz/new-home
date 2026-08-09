@@ -1,0 +1,8 @@
+<svg viewBox="0 0 70 82" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-label="The Sweet Home Co.">
+  <!-- Top bar + angled roof + chimney (top belly of S) -->
+  <path d="M4,14 L40,14 L40,7 L53,7 L53,0 L61,0 L61,8 L52,8 L48,14 L48,22 L4,22 Z"/>
+  <!-- S middle diagonal -->
+  <path d="M48,22 L58,22 L22,64 L12,64 Z"/>
+  <!-- Bottom house base with door cutout -->
+  <path d="M12,64 L66,64 L66,75 L46,75 L46,82 L30,82 L30,75 L12,75 Z"/>
+</svg>
