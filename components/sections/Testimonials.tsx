@@ -71,7 +71,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
 
   const trackRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
-  const animRef = useRef<number>();
+  const animRef = useRef<number | undefined>(undefined);
   const posRef = useRef(0);
 
   useEffect(() => {
