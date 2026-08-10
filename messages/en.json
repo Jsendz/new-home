@@ -6,6 +6,28 @@
     "blog": "Articles",
     "contact": "Work with us"
   },
+  "meta": {
+    "home": {
+      "title": "The Sweet Home Co. | Real Estate in Wasilla, Anchorage & Palmer",
+      "description": "Find your perfect home in Alaska's Mat-Su Valley. Browse listings, get expert local guidance, and work with a real estate agency built on trust."
+    },
+    "about": {
+      "title": "About Us | The Sweet Home Co.",
+      "description": "Meet the team behind The Sweet Home Co. — a real estate agency built on trust, local expertise, and genuine care for every client."
+    },
+    "contact": {
+      "title": "Contact Us | The Sweet Home Co.",
+      "description": "Ready to buy, sell, or rent? Reach out to The Sweet Home Co. and one of our agents will get back to you within 24 hours."
+    },
+    "listings": {
+      "title": "Property Listings | The Sweet Home Co.",
+      "description": "Browse homes for sale and rent across Wasilla, Anchorage, and Palmer — handpicked listings from The Sweet Home Co."
+    },
+    "blog": {
+      "title": "Articles & Market Insights | The Sweet Home Co.",
+      "description": "Real estate tips, Alaska market trends, and expert advice from The Sweet Home Co.'s team of local agents."
+    }
+  },
   "hero": {
     "label": "Your Trusted Real Estate Partner",
     "headline": "Find Your Perfect Place to Call Home",
@@ -69,7 +91,9 @@
     "subtitle": "Expert perspectives on real estate trends, tips, and local market news.",
     "read_more": "Read Article",
     "view_all": "View All Articles",
-    "min_read": "min read"
+    "min_read": "min read",
+    "back_to_articles": "Back to Articles",
+    "by": "By"
   },
   "about": {
     "label": "Our Story",

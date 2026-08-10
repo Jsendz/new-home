@@ -5,53 +5,10 @@ import { ArrowRight, Clock } from "lucide-react";
 import FadeInUp from "@/components/ui/FadeInUp";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { formatDate } from "@/lib/utils";
-
-interface BlogPostPreview {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  publishedAt: string;
-  excerpt: string;
-  readTime: number;
-  mainImage?: string;
-  author?: { name: string };
-}
-
-const DEMO_POSTS: BlogPostPreview[] = [
-  {
-    _id: "1",
-    title: "5 Things to Look for When Buying Your First Home",
-    slug: { current: "first-home-buying-tips" },
-    publishedAt: "2026-03-20",
-    excerpt: "From neighborhood research to hidden costs, here's what seasoned buyers wish they knew before signing.",
-    readTime: 6,
-    mainImage: "https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=800&q=80",
-    author: { name: "Emily Shaw" },
-  },
-  {
-    _id: "2",
-    title: "Alaska Real Estate: Market Trends for 2026",
-    slug: { current: "alaska-market-trends-2026" },
-    publishedAt: "2026-02-14",
-    excerpt: "Interest rates have stabilized and inventory is picking up. Here's what buyers and sellers can expect this year.",
-    readTime: 8,
-    mainImage: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80",
-    author: { name: "Tom Ridley" },
-  },
-  {
-    _id: "3",
-    title: "How to Stage Your Home for a Faster, Higher Sale",
-    slug: { current: "home-staging-tips" },
-    publishedAt: "2026-01-30",
-    excerpt: "Small changes — the right lighting, decluttering, a fresh coat of paint — can add tens of thousands to your sale price.",
-    readTime: 5,
-    mainImage: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80",
-    author: { name: "Sarah Connors" },
-  },
-];
+import { DEMO_POSTS, type BlogPost } from "@/lib/demo-blog";
 
 interface BlogPreviewProps {
-  posts?: BlogPostPreview[];
+  posts?: BlogPost[];
 }
 
 export default function BlogPreview({ posts }: BlogPreviewProps) {
@@ -102,13 +59,13 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
   );
 }
 
-function BlogCard({
+export function BlogCard({
   post,
   locale,
   t,
   large = false,
 }: {
-  post: BlogPostPreview;
+  post: BlogPost;
   locale: string;
   t: (key: string) => string;
   large?: boolean;

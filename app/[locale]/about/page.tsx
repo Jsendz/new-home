@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import FadeInUp from "@/components/ui/FadeInUp";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { sanityClient, ABOUT_PAGE_QUERY, urlForImage } from "@/lib/sanity";
+import { buildMetadata } from "@/lib/metadata";
+import { localizedUrl } from "@/lib/site";
+import { breadcrumbSchema } from "@/lib/schema";
+import JsonLd from "@/components/JsonLd";
 
 const DEFAULT_STATS = [
   { value: "15+", label: "Years of experience" },
@@ -41,7 +47,28 @@ const DEFAULT_TEAM = [
 
 export const revalidate = 60;
 
-export default async function AboutPage() {
+interface Props {
+  params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.about" });
+  return buildMetadata({
+    locale,
+    path: "/about",
+    title: t("title"),
+    description: t("description"),
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
+  });
+}
+
+export default async function AboutPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+
   let data: Record<string, any> | null = null;
   try {
     data = await sanityClient.fetch(ABOUT_PAGE_QUERY);
@@ -74,6 +101,12 @@ export default async function AboutPage() {
 
   return (
     <div className="pt-[68px]">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: tNav("home"), url: localizedUrl(locale, "") },
+          { name: tNav("about"), url: localizedUrl(locale, "/about") },
+        ])}
+      />
 
       {/* ── Hero ── */}
       <section className="relative h-[70vh] min-h-[500px] flex items-end">

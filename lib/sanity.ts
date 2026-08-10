@@ -44,6 +44,10 @@ export const BLOG_POST_BY_SLUG_QUERY = `*[_type == "blogPost" && slug.current ==
   author->{ name, photo, role }
 }`;
 
+export const PROPERTY_SLUGS_QUERY = `*[_type == "property" && defined(slug.current)].slug.current`;
+
+export const BLOG_SLUGS_QUERY = `*[_type == "blogPost" && defined(slug.current)].slug.current`;
+
 export const TESTIMONIALS_QUERY = `*[_type == "testimonial"] | order(_createdAt asc) {
   _id, quote, authorName, authorImage, rating
 }`;

@@ -1,4 +1,26 @@
 {
+  "meta": {
+    "home": {
+      "title": "The Sweet Home Co. | Immobilier à Wasilla, Anchorage et Palmer",
+      "description": "Trouvez la maison idéale dans la vallée de Mat-Su, en Alaska. Parcourez nos annonces et faites confiance à une agence immobilière fondée sur la confiance."
+    },
+    "about": {
+      "title": "À Propos | The Sweet Home Co.",
+      "description": "Découvrez l'équipe derrière The Sweet Home Co. — une agence immobilière fondée sur la confiance, l'expertise locale et une attention sincère."
+    },
+    "contact": {
+      "title": "Nous Contacter | The Sweet Home Co.",
+      "description": "Prêt à acheter, vendre ou louer ? Contactez The Sweet Home Co. et l'un de nos agents vous répondra sous 24 heures."
+    },
+    "listings": {
+      "title": "Annonces Immobilières | The Sweet Home Co.",
+      "description": "Parcourez les maisons à vendre et à louer à Wasilla, Anchorage et Palmer — une sélection de The Sweet Home Co."
+    },
+    "blog": {
+      "title": "Articles et Tendances du Marché | The Sweet Home Co.",
+      "description": "Conseils immobiliers, tendances du marché de l'Alaska et avis d'experts de l'équipe The Sweet Home Co."
+    }
+  },
   "nav": {
     "home": "Accueil",
     "about": "À Propos",
@@ -69,7 +91,9 @@
     "subtitle": "Analyses expertes sur les tendances immobilières, conseils et actualités du marché local.",
     "read_more": "Lire l'Article",
     "view_all": "Voir Tous les Articles",
-    "min_read": "min de lecture"
+    "min_read": "min de lecture",
+    "back_to_articles": "Retour aux Articles",
+    "by": "Par"
   },
   "about": {
     "label": "Notre Histoire",

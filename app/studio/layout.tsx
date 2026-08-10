@@ -1,5 +1,8 @@
+import "../globals.css";
+
 export const metadata = {
   title: 'Sanity Studio',
+  robots: { index: false, follow: false },
 }
 
 export default function StudioLayout({
@@ -7,5 +10,9 @@ export default function StudioLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>{children}</body>
+    </html>
+  )
 }
