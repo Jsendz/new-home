@@ -2,6 +2,19 @@ import { SITE_URL } from "@/lib/site";
 
 const DEFAULT_NAME = "The Sweet Home Co.";
 
+// Placeholder contact details until real business info is supplied via
+// Sanity siteSettings — keeps structured data internally consistent with
+// the footer rather than omitting address/phone entirely.
+const DEFAULT_ADDRESS = {
+  "@type": "PostalAddress",
+  streetAddress: "Avinguda Meritxell, 1",
+  postalCode: "AD500",
+  addressLocality: "Andorra la Vella",
+  addressCountry: "AD",
+};
+const DEFAULT_PHONE = "+376 800 100";
+const DEFAULT_EMAIL = "info@thesweethomeco.ad";
+
 interface SiteSettingsData {
   agencyName?: string;
   logo?: string;
@@ -22,11 +35,15 @@ export function organizationSchema(settings?: SiteSettingsData | null) {
     name: settings?.agencyName || DEFAULT_NAME,
     url: SITE_URL,
     ...(settings?.logo && { logo: settings.logo, image: settings.logo }),
-    ...(settings?.contactEmail && { email: settings.contactEmail }),
-    ...(settings?.phone && { telephone: settings.phone }),
-    ...(settings?.address && {
-      address: { "@type": "PostalAddress", streetAddress: settings.address },
-    }),
+    email: settings?.contactEmail || DEFAULT_EMAIL,
+    telephone: settings?.phone || DEFAULT_PHONE,
+    address: settings?.address
+      ? { "@type": "PostalAddress", streetAddress: settings.address, addressCountry: "AD" }
+      : DEFAULT_ADDRESS,
+    areaServed: {
+      "@type": "Country",
+      name: "Andorra",
+    },
     ...(sameAs.length && { sameAs }),
   };
 }

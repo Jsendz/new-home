@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { formatPrice, localizedField } from "@/lib/utils";
+import { localizedPath } from "@/lib/site";
 import { urlForImage } from "@/lib/sanity";
 import Badge from "./Badge";
 
@@ -60,7 +61,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
     >
-      <Link href={`/${locale}/listings/${property.slug.current}`} className="block">
+      <Link href={localizedPath(locale, `/listings/${property.slug.current}`)} className="block">
         {/* Image */}
         <div className="relative overflow-hidden aspect-[4/3]">
           <motion.div
@@ -108,14 +109,14 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
             </span>
             <span className="flex items-center gap-1.5">
               <Maximize2 size={13} strokeWidth={2} />
-              {property.sqft.toLocaleString()} {t("details.sqft")}
+              {property.sqft.toLocaleString("en-US")} {t("details.sqft")}
             </span>
           </div>
 
           {/* Price */}
           <div className="flex items-center justify-between">
             <p className="font-serif text-xl font-semibold text-foreground">
-              {formatPrice(property.price)}
+              {formatPrice(property.price, locale)}
             </p>
             <span className="text-xs font-medium text-accent border border-accent/30 px-3 py-1 rounded-full hover:bg-accent hover:text-white transition-colors">
               {t("view_property")} →

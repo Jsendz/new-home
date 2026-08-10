@@ -9,40 +9,10 @@ import { localizedUrl } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 
-const DEFAULT_STATS = [
-  { value: "15+", label: "Years of experience" },
-  { value: "250+", label: "Homes sold" },
-  { value: "98%", label: "Client satisfaction" },
-  { value: "9",   label: "Industry awards" },
-];
-
-const DEFAULT_MISSIONS = [
-  {
-    title: "Putting families first",
-    body: "Every decision we make starts with one question: what's best for the people we serve? We believe a home is more than a transaction — it's where life happens.",
-  },
-  {
-    title: "Local expertise, world-class service",
-    body: "Rooted in Alaska's real estate market, we combine hyper-local knowledge with genuine care to deliver outcomes that consistently exceed expectations.",
-  },
-];
-
-const DEFAULT_TEAM = [
-  {
-    name: "Sarah Mitchell",
-    role: "Founder & Lead Agent",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b8c4?w=600&q=80",
-  },
-  {
-    name: "James Kowalski",
-    role: "Senior Property Consultant",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
-  },
-  {
-    name: "Elena Reyes",
-    role: "Client Relations Manager",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80",
-  },
+const DEFAULT_TEAM_PHOTOS = [
+  "https://images.unsplash.com/photo-1494790108755-2616b612b8c4?w=600&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80",
 ];
 
 export const revalidate = 60;
@@ -68,36 +38,40 @@ export default async function AboutPage({ params }: Props) {
   setRequestLocale(locale);
 
   const tNav = await getTranslations({ locale, namespace: "nav" });
+  const t = await getTranslations({ locale, namespace: "about" });
 
   let data: Record<string, any> | null = null;
   try {
     data = await sanityClient.fetch(ABOUT_PAGE_QUERY);
   } catch {
-    // Sanity not configured — use defaults
+    // Sanity not configured — use translated defaults
   }
 
-  const heroHeadline    = data?.heroHeadline    ?? "Crafting homes\nthat feel like yours";
-  const heroSubheadline = data?.heroSubheadline ?? "We turn ideas into inviting, functional spaces — thoughtfully designed for the way you live every day.";
+  const heroHeadline    = data?.heroHeadline    ?? t("title");
+  const heroSubheadline = data?.heroSubheadline ?? t("subtitle");
   const heroImageUrl    = data?.heroImage ? urlForImage(data.heroImage).width(1600).url() : "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80";
 
-  const storyHeadline   = data?.storyHeadline ?? "The story behind\nour creative craft";
-  const storyParagraphs = data?.storyParagraphs?.length ? data.storyParagraphs : [
-    "We started with a vision: transform the way Alaska families find their perfect home. What began as a small, passionate team has grown into a full-service real estate agency dedicated to our clients from the very first conversation to the moment the keys are handed over.",
-    "Over the years, our dedication to integrity, detail, and genuine relationships has helped shape hundreds of lives across Wasilla, Anchorage, Palmer, and the Mat-Su Valley. We design every interaction with intention — blending local expertise and warmth to make real estate feel personal, not transactional.",
-  ];
-  const quoteText        = data?.quoteText       ?? "Every home we help someone find is a chance to change their life. That responsibility drives everything we do — every call, every showing, every negotiation.";
-  const quoteAuthorName  = data?.quoteAuthorName  ?? "Sarah Mitchell";
-  const quoteAuthorRole  = data?.quoteAuthorRole  ?? "Founder & Lead Agent";
-  const quoteAuthorImage = data?.quoteAuthorImage ? urlForImage(data.quoteAuthorImage).width(100).url() : "https://images.unsplash.com/photo-1494790108755-2616b612b8c4?w=100&q=80";
+  const storyHeadline   = data?.storyHeadline ?? t("story_headline");
+  const storyParagraphs: string[] = data?.storyParagraphs?.length ? data.storyParagraphs : t.raw("story_paragraphs");
 
-  const missionHeadline = data?.missionHeadline ?? "Purpose that\ndrives every detail";
-  const missions        = data?.missions?.length ? data.missions : DEFAULT_MISSIONS;
-  const stats           = data?.stats?.length   ? data.stats   : DEFAULT_STATS;
-  const team            = data?.team?.length     ? data.team.map((m: any) => ({
-    name:  m.name,
-    role:  m.role,
-    image: m.image ? urlForImage(m.image).width(600).url() : DEFAULT_TEAM[0].image,
-  })) : DEFAULT_TEAM;
+  const quoteText        = data?.quoteText       ?? t("quote_text");
+  const quoteAuthorName  = data?.quoteAuthorName  ?? t("quote_author_name");
+  const quoteAuthorRole  = data?.quoteAuthorRole  ?? t("quote_author_role");
+  const quoteAuthorImage = data?.quoteAuthorImage ? urlForImage(data.quoteAuthorImage).width(100).url() : DEFAULT_TEAM_PHOTOS[0];
+
+  const missionHeadline = data?.missionHeadline ?? t("mission_headline");
+  const missions: { title: string; body: string }[] = data?.missions?.length ? data.missions : t.raw("missions");
+  const stats: { value: string; label: string }[] = data?.stats?.length ? data.stats : t.raw("stats");
+  const team: { name: string; role: string; image: string }[] = data?.team?.length
+    ? data.team.map((m: any) => ({
+        name:  m.name,
+        role:  m.role,
+        image: m.image ? urlForImage(m.image).width(600).url() : DEFAULT_TEAM_PHOTOS[0],
+      }))
+    : t.raw("team").map((m: { name: string; role: string }, i: number) => ({
+        ...m,
+        image: DEFAULT_TEAM_PHOTOS[i % DEFAULT_TEAM_PHOTOS.length],
+      }));
 
   return (
     <div className="pt-[68px]">
@@ -112,14 +86,14 @@ export default async function AboutPage({ params }: Props) {
       <section className="relative h-[70vh] min-h-[500px] flex items-end">
         <Image
           src={heroImageUrl}
-          alt="Beautiful home"
+          alt={heroHeadline}
           fill
           className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent" />
         <div className="relative container-site pb-16">
-          <SectionLabel className="text-white/60 mb-3">About us</SectionLabel>
+          <SectionLabel className="text-white/60 mb-3">{t("label")}</SectionLabel>
           <h1 className="font-display text-display-xl text-white leading-none whitespace-pre-line">
             {heroHeadline}
           </h1>
@@ -134,7 +108,7 @@ export default async function AboutPage({ params }: Props) {
         <div className="container-site">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <FadeInUp>
-              <SectionLabel className="mb-3">Our story</SectionLabel>
+              <SectionLabel className="mb-3">{t("story_label")}</SectionLabel>
               <h2 className="font-display text-display-md text-foreground tracking-wider mb-6 whitespace-pre-line">
                 {storyHeadline}
               </h2>
@@ -178,7 +152,7 @@ export default async function AboutPage({ params }: Props) {
       <section className="section-padding bg-navy">
         <div className="container-site">
           <FadeInUp>
-            <SectionLabel className="text-white/50 mb-3">Our mission</SectionLabel>
+            <SectionLabel className="text-white/50 mb-3">{t("mission_label")}</SectionLabel>
             <h2 className="font-display text-display-md text-white tracking-wider mb-12 whitespace-pre-line">
               {missionHeadline}
             </h2>
@@ -200,12 +174,12 @@ export default async function AboutPage({ params }: Props) {
       <section className="section-padding bg-background">
         <div className="container-site">
           <FadeInUp className="text-center mb-14">
-            <SectionLabel className="mb-3">Proven results</SectionLabel>
+            <SectionLabel className="mb-3">{t("results_label")}</SectionLabel>
             <h2 className="font-display text-display-md text-foreground tracking-wider">
-              Where vision meets<br />measurable impact
+              {t("results_headline")}
             </h2>
             <p className="mt-4 text-sm text-muted max-w-md mx-auto leading-relaxed">
-              Our client-driven approach has earned trust and delivered lasting results across Alaska&apos;s real estate market.
+              {t("results_subtitle")}
             </p>
           </FadeInUp>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
@@ -225,12 +199,12 @@ export default async function AboutPage({ params }: Props) {
       <section className="section-padding bg-background border-t border-border">
         <div className="container-site">
           <FadeInUp className="text-center mb-14">
-            <SectionLabel className="mb-3">Our team</SectionLabel>
+            <SectionLabel className="mb-3">{t("team_label")}</SectionLabel>
             <h2 className="font-display text-display-md text-foreground tracking-wider">
-              The dedicated team<br />behind the craft
+              {t("team_headline")}
             </h2>
             <p className="mt-4 text-sm text-muted max-w-md mx-auto">
-              Our team unites agents, advisors, and support staff who care about every single detail.
+              {t("team_subtitle")}
             </p>
           </FadeInUp>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">

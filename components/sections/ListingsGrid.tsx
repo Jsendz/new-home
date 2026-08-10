@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { localizedPath } from "@/lib/site";
 import {
   Bed, Bath, Maximize2, MapPin, ArrowRight,
   SlidersHorizontal, Check, X, ChevronDown,
@@ -24,22 +25,18 @@ export { DEMO_LISTINGS };
 type StatusFilter = "all" | "for_sale" | "sold" | "rented";
 type SortOption   = "default" | "price_asc" | "price_desc";
 
-const STATUS_OPTIONS: { key: StatusFilter; label: string }[] = [
-  { key: "all",      label: "All" },
-  { key: "for_sale", label: "For Sale" },
-  { key: "sold",     label: "Sold" },
-  { key: "rented",   label: "Rented" },
-];
-
 const PROPERTY_TYPES = ["Apartment", "Villa", "House", "Condo", "Townhouse"];
-const CITIES         = ["Wasilla", "Anchorage", "Palmer"];
+const CITIES = [
+  "Andorra la Vella", "Escaldes-Engordany", "Encamp",
+  "La Massana", "Ordino", "Sant Julià de Lòria", "Canillo",
+];
 
 interface PriceRange { label: string; min: number; max: number }
 const PRICE_RANGES: PriceRange[] = [
-  { label: "Under $300k",    min: 0,       max: 300000   },
-  { label: "$300k – $600k",  min: 300000,  max: 600000   },
-  { label: "$600k – $1M",    min: 600000,  max: 1000000  },
-  { label: "$1M+",           min: 1000000, max: Infinity  },
+  { label: "Under €400k",      min: 0,       max: 400000   },
+  { label: "€400k – €700k",    min: 400000,  max: 700000   },
+  { label: "€700k – €1.2M",    min: 700000,  max: 1200000  },
+  { label: "€1.2M+",           min: 1200000, max: Infinity  },
 ];
 
 // ── Main component ─────────────────────────────────────────────────────────
@@ -51,6 +48,13 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
   const t      = useTranslations("listings");
   const locale = useLocale();
   const items  = properties?.length ? properties : DEMO_LISTINGS;
+
+  const statusOptions: { key: StatusFilter; label: string }[] = [
+    { key: "all",      label: t("status.all") },
+    { key: "for_sale", label: t("status.for_sale") },
+    { key: "sold",     label: t("status.sold") },
+    { key: "rented",   label: t("status.rented") },
+  ];
 
   const [status,       setStatus]       = useState<StatusFilter>("all");
   const [sort,         setSort]         = useState<SortOption>("default");
@@ -103,7 +107,7 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
       <div>
         <p className="text-[10px] font-semibold uppercase tracking-widest text-muted mb-3">Status</p>
         <div className="space-y-1">
-          {STATUS_OPTIONS.map(({ key, label }) => (
+          {statusOptions.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => setStatus(key)}
@@ -351,7 +355,7 @@ function MasonryCard({
       transition={{ duration: 0.6, delay: (index % 3) * 0.07, ease: [0.22, 1, 0.36, 1] }}
       className="flex flex-col"
     >
-      <Link href={`/${locale}/listings/${property.slug.current}`} className="group block">
+      <Link href={localizedPath(locale, `/listings/${property.slug.current}`)} className="group block">
         <article className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-400">
 
           {/* Image */}
@@ -386,7 +390,7 @@ function MasonryCard({
 
             <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-4 pt-8">
               <p className="font-serif text-white text-xl font-semibold leading-none">
-                {formatPrice(property.price)}
+                {formatPrice(property.price, locale)}
               </p>
             </div>
 
@@ -412,7 +416,7 @@ function MasonryCard({
             <div className="flex items-center gap-2 flex-wrap">
               <StatBadge icon={<Bed size={11} strokeWidth={2} />}      value={property.bedrooms}              label={t("details.beds")} />
               <StatBadge icon={<Bath size={11} strokeWidth={2} />}     value={property.bathrooms}             label={t("details.baths")} />
-              <StatBadge icon={<Maximize2 size={11} strokeWidth={2} />} value={property.sqft.toLocaleString()} label={t("details.sqft")} />
+              <StatBadge icon={<Maximize2 size={11} strokeWidth={2} />} value={property.sqft.toLocaleString("en-US")} label={t("details.sqft")} />
             </div>
           </div>
 

@@ -6,7 +6,7 @@ import { ArrowLeft, Clock } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { sanityClient, BLOG_POST_BY_SLUG_QUERY, BLOG_SLUGS_QUERY, urlForImage } from "@/lib/sanity";
 import { buildMetadata } from "@/lib/metadata";
-import { localizedUrl, SITE_URL } from "@/lib/site";
+import { localizedUrl, localizedPath, SITE_URL } from "@/lib/site";
 import { breadcrumbSchema, articleSchema } from "@/lib/schema";
 import { routing } from "@/i18n/routing";
 import { DEMO_POSTS, type BlogPost } from "@/lib/demo-blog";
@@ -128,7 +128,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="container-site max-w-3xl">
               <FadeInUp>
                 <Link
-                  href={`/${locale}/blog`}
+                  href={localizedPath(locale, "/blog")}
                   className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-accent transition-colors mb-8"
                 >
                   <ArrowLeft size={14} /> {t("back_to_articles")}

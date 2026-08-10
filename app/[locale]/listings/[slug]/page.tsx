@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     path: `/listings/${slug}`,
     title: `${property.title} | The Sweet Home Co.`,
-    description: `${property.bedrooms} bed · ${property.bathrooms} bath · ${property.sqft?.toLocaleString()} sqft — ${property.location}`,
+    description: `${property.bedrooms} bed · ${property.bathrooms} bath · ${property.sqft?.toLocaleString("en-US")} sqft — ${property.location}`,
     image,
   });
 }

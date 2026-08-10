@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { formatPrice, localizedField } from "@/lib/utils";
+import { localizedPath } from "@/lib/site";
 import { urlForImage } from "@/lib/sanity";
 import { DEMO_LISTINGS, type ListingProperty } from "@/lib/demo-listings";
 import PropertyCard from "@/components/ui/PropertyCard";
@@ -29,11 +30,11 @@ export interface PropertyFull extends ListingProperty {
 // ── Demo fill for missing Sanity data ──────────────────────────────────────
 const DEMO_FULL: Partial<PropertyFull> = {
   description:
-    "A bright coastal-inspired home offering modern interiors, spacious living areas, and elegant finishes throughout. Ideal for buyers seeking comfort, style, and a well-located property close to the best amenities and local attractions. The open-plan kitchen connects seamlessly to the dining and living spaces, all bathed in natural light through floor-to-ceiling windows.",
+    "A bright, mountain-inspired home offering modern interiors, spacious living areas, and elegant finishes throughout. Ideal for buyers seeking comfort, style, and a well-located property close to Andorra's best amenities, ski access, and local attractions. The open-plan kitchen connects seamlessly to the dining and living spaces, all bathed in natural light through floor-to-ceiling windows.",
   amenities: [
-    "Central Air Conditioning", "In-unit Laundry", "Hardwood Floors",
+    "Underfloor Heating", "In-unit Laundry", "Hardwood Floors",
     "Stainless Appliances", "Private Balcony", "Covered Parking",
-    "Storage Unit", "Pet Friendly", "Bike Storage",
+    "Storage Unit", "Pet Friendly", "Ski Storage",
   ],
   gallery: [
     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80",
@@ -43,57 +44,57 @@ const DEMO_FULL: Partial<PropertyFull> = {
   ],
 };
 
-const ACCORDION_SECTIONS = [
-  {
-    key: "details",
-    label: "Property Details",
-    content: (p: PropertyFull) => (
-      <dl className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
-        {[
-          ["Property Type", p.propertyType ?? "—"],
-          ["Status",        p.status.replace("_", " ")],
-          ["Bedrooms",      p.bedrooms],
-          ["Bathrooms",     p.bathrooms],
-          ["Living Area",   `${p.sqft.toLocaleString()} sq ft`],
-          ["Parking",       p.parking ?? 1],
-        ].map(([k, v]) => (
-          <div key={String(k)}>
-            <dt className="text-muted text-[11px] uppercase tracking-wider mb-0.5">{k}</dt>
-            <dd className="font-medium text-foreground capitalize">{v}</dd>
-          </div>
-        ))}
-      </dl>
-    ),
-  },
-  {
-    key: "location",
-    label: "Location & Surroundings",
-    content: (p: PropertyFull) => (
-      <p className="text-sm text-muted leading-relaxed">
-        Located at <span className="text-foreground font-medium">{p.location}</span>, this property
-        sits in one of the area&apos;s most desirable neighbourhoods. Within walking distance of
-        local shops, parks, schools, and public transport links.
-      </p>
-    ),
-  },
-  {
-    key: "amenities",
-    label: "Features & Amenities",
-    content: (p: PropertyFull) => {
-      const list = p.amenities ?? DEMO_FULL.amenities ?? [];
-      return (
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
-          {list.map((a) => (
-            <li key={a} className="flex items-center gap-2 text-sm text-muted">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-              {a}
-            </li>
+function getAccordionSections(t: ReturnType<typeof useTranslations>) {
+  return [
+    {
+      key: "details",
+      label: t("overview"),
+      content: (p: PropertyFull) => (
+        <dl className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          {[
+            [t("type_label"),   p.propertyType ?? "—"],
+            [t("status_label"), p.status.replace("_", " ")],
+            [t("beds_label"),   p.bedrooms],
+            [t("baths_label"),  p.bathrooms],
+            [t("sqft_label"),   `${p.sqft.toLocaleString("en-US")} m²`],
+            [t("parking_label"), p.parking ?? 1],
+          ].map(([k, v]) => (
+            <div key={String(k)}>
+              <dt className="text-muted text-[11px] uppercase tracking-wider mb-0.5">{k}</dt>
+              <dd className="font-medium text-foreground capitalize">{v}</dd>
+            </div>
           ))}
-        </ul>
-      );
+        </dl>
+      ),
     },
-  },
-];
+    {
+      key: "location",
+      label: t("location_surroundings_label"),
+      content: (p: PropertyFull) => (
+        <p className="text-sm text-muted leading-relaxed">
+          {t("location_note", { location: p.location })}
+        </p>
+      ),
+    },
+    {
+      key: "amenities",
+      label: t("amenities"),
+      content: (p: PropertyFull) => {
+        const list = p.amenities ?? DEMO_FULL.amenities ?? [];
+        return (
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
+            {list.map((a) => (
+              <li key={a} className="flex items-center gap-2 text-sm text-muted">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                {a}
+              </li>
+            ))}
+          </ul>
+        );
+      },
+    },
+  ];
+}
 
 // ── Main component ─────────────────────────────────────────────────────────
 export default function PropertyDetail({ property }: { property: PropertyFull }) {
@@ -133,11 +134,11 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
       <div className="container-site pt-6 pb-0">
         {/* Back link */}
         <Link
-          href={`/${locale}/listings`}
+          href={localizedPath(locale, "/listings")}
           className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors mb-5 group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-          Back to listings
+          {t("back_to_listings")}
         </Link>
 
         {/* Gallery grid */}
@@ -163,7 +164,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             {galleryUrls[0] && (
               <Image
                 src={galleryUrls[0]}
-                alt="Interior view"
+                alt={`${title} — interior`}
                 fill
                 sizes="(max-width: 1280px) 35vw, 420px"
                 className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
@@ -176,7 +177,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             {galleryUrls[1] && (
               <Image
                 src={galleryUrls[1]}
-                alt="Interior view"
+                alt={`${title} — interior`}
                 fill
                 sizes="(max-width: 1280px) 35vw, 420px"
                 className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
@@ -186,7 +187,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             <div className="absolute bottom-3 right-3">
               <button className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-white transition-colors shadow-sm">
                 <Images size={12} />
-                Show all photos
+                {t("show_all_photos")}
               </button>
             </div>
           </div>
@@ -225,9 +226,9 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
                 {title}
               </h1>
               <div className="text-right">
-                <p className="text-xs text-muted uppercase tracking-wider mb-0.5">Listing price</p>
+                <p className="text-xs text-muted uppercase tracking-wider mb-0.5">{t("listing_price_label")}</p>
                 <p className="font-display text-foreground tracking-wide text-3xl">
-                  {formatPrice(property.price)}
+                  {formatPrice(property.price, locale)}
                 </p>
               </div>
             </div>
@@ -235,10 +236,10 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             {/* Stats row */}
             <div className="flex flex-wrap items-center gap-3 mb-8">
               {[
-                { icon: Maximize2, label: "Size (sq ft)", value: property.sqft.toLocaleString() },
-                { icon: Bed,       label: "Beds",         value: property.bedrooms },
-                { icon: Bath,      label: "Bath",         value: property.bathrooms },
-                { icon: Home,      label: "Type",         value: property.propertyType ?? "—" },
+                { icon: Maximize2, label: t("sqft_label"),  value: `${property.sqft.toLocaleString("en-US")} m²` },
+                { icon: Bed,       label: t("beds_label"),  value: property.bedrooms },
+                { icon: Bath,      label: t("baths_label"), value: property.bathrooms },
+                { icon: Home,      label: t("type_label"),  value: property.propertyType ?? "—" },
               ].map(({ icon: Icon, label, value }) => (
                 <div
                   key={label}
@@ -255,13 +256,13 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
 
             {/* Description */}
             <div className="mb-8">
-              <h2 className="font-sans font-semibold text-base text-foreground mb-3">Description</h2>
+              <h2 className="font-sans font-semibold text-base text-foreground mb-3">{t("overview")}</h2>
               <p className="text-sm text-muted leading-relaxed">{desc}</p>
             </div>
 
             {/* Accordions */}
             <div className="mb-10 border-t border-border">
-              {ACCORDION_SECTIONS.map(({ key, label, content }) => (
+              {getAccordionSections(t).map(({ key, label, content }) => (
                 <Accordion key={key} label={label}>
                   {content(property)}
                 </Accordion>
@@ -270,7 +271,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
 
             {/* Gallery grid */}
             <div className="mb-10">
-              <h2 className="font-sans font-semibold text-base text-foreground mb-5">Gallery</h2>
+              <h2 className="font-sans font-semibold text-base text-foreground mb-5">{t("gallery")}</h2>
               <div className="grid grid-cols-2 gap-3">
                 {galleryUrls.slice(0, 4).map((url, i) => (
                   <motion.div
@@ -281,7 +282,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
                   >
                     <Image
                       src={url}
-                      alt={`Gallery ${i + 1}`}
+                      alt={`${title} — ${t("gallery").toLowerCase()} ${i + 1}`}
                       fill
                       sizes="(max-width: 1024px) 50vw, 400px"
                       className="object-cover group-hover:scale-[1.06] transition-transform duration-500"
@@ -293,12 +294,12 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
 
             {/* Location map placeholder */}
             <div>
-              <h2 className="font-sans font-semibold text-base text-foreground mb-5">Location map</h2>
+              <h2 className="font-sans font-semibold text-base text-foreground mb-5">{t("location_map_label")}</h2>
               <div className="w-full h-64 rounded-2xl overflow-hidden bg-card border border-border flex items-center justify-center">
                 <div className="text-center">
                   <MapPin size={28} className="text-accent mx-auto mb-2" strokeWidth={1.5} />
                   <p className="text-sm font-medium text-foreground">{property.location}</p>
-                  <p className="text-xs text-muted mt-1">Map integration via Google Maps</p>
+                  <p className="text-xs text-muted mt-1">{t("map_integration_note")}</p>
                 </div>
               </div>
             </div>
@@ -345,9 +346,9 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
         <div className="border-t border-border section-padding bg-card">
           <div className="container-site">
             <h2 className="font-display text-foreground tracking-wider mb-2" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}>
-              Similar Listings
+              {t("similar")}
             </h2>
-            <p className="text-sm text-muted mb-10">Other properties with similar features and appeal.</p>
+            <p className="text-sm text-muted mb-10">{t("similar_subtitle")}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {similarProperties.map((p, i) => (
                 <PropertyCard key={p._id} property={p} index={i} />

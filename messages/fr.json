@@ -1,24 +1,24 @@
 {
   "meta": {
     "home": {
-      "title": "The Sweet Home Co. | Immobilier à Wasilla, Anchorage et Palmer",
-      "description": "Trouvez la maison idéale dans la vallée de Mat-Su, en Alaska. Parcourez nos annonces et faites confiance à une agence immobilière fondée sur la confiance."
+      "title": "Agence Immobilière en Andorre | Appartements et Maisons à Vendre | The Sweet Home Co.",
+      "description": "Agence immobilière de confiance en Andorre. Découvrez appartements, penthouses et maisons à vendre et à louer dans toutes les paroisses, avec un accompagnement expert pour résidents et non-résidents."
     },
     "about": {
-      "title": "À Propos | The Sweet Home Co.",
-      "description": "Découvrez l'équipe derrière The Sweet Home Co. — une agence immobilière fondée sur la confiance, l'expertise locale et une attention sincère."
+      "title": "À Propos | Agence Immobilière en Andorre | The Sweet Home Co.",
+      "description": "Découvrez l'équipe de The Sweet Home Co., agence immobilière locale spécialisée dans l'achat, la vente et la location de biens à Andorre-la-Vieille et dans toutes les paroisses du pays."
     },
     "contact": {
-      "title": "Nous Contacter | The Sweet Home Co.",
-      "description": "Prêt à acheter, vendre ou louer ? Contactez The Sweet Home Co. et l'un de nos agents vous répondra sous 24 heures."
+      "title": "Contactez Notre Agence Immobilière en Andorre | The Sweet Home Co.",
+      "description": "Vous souhaitez acheter, vendre ou louer un bien en Andorre ? Contactez The Sweet Home Co. et l'un de nos agents vous répondra en moins de 24 heures."
     },
     "listings": {
-      "title": "Annonces Immobilières | The Sweet Home Co.",
-      "description": "Parcourez les maisons à vendre et à louer à Wasilla, Anchorage et Palmer — une sélection de The Sweet Home Co."
+      "title": "Appartements et Maisons à Vendre en Andorre | The Sweet Home Co.",
+      "description": "Découvrez notre sélection d'appartements, penthouses, maisons et chalets à vendre et à louer à Andorre-la-Vieille, Escaldes-Engordany et dans le reste du pays."
     },
     "blog": {
-      "title": "Articles et Tendances du Marché | The Sweet Home Co.",
-      "description": "Conseils immobiliers, tendances du marché de l'Alaska et avis d'experts de l'équipe The Sweet Home Co."
+      "title": "Guides du Marché Immobilier en Andorre | The Sweet Home Co.",
+      "description": "Fiscalité, résidence, investissement étranger et tendances du marché immobilier en Andorre, expliqués par des experts locaux de The Sweet Home Co."
     }
   },
   "nav": {
@@ -29,17 +29,18 @@
     "contact": "Travailler avec nous"
   },
   "hero": {
-    "label": "Votre Partenaire Immobilier de Confiance",
-    "headline": "Trouvez l'Endroit Parfait à Appeler Chez Soi",
-    "subheadline": "Nous vous aidons à découvrir, évaluer et sécuriser les meilleures propriétés — avec clarté, soin et expertise.",
+    "label": "Votre Agence Immobilière de Confiance en Andorre",
+    "headline": "Trouvez Votre Maison Idéale en Andorre",
+    "subheadline": "Nous vous aidons à découvrir, évaluer et acquérir les meilleurs biens du pays — avec clarté, expertise locale et un accompagnement complet pour résidents et non-résidents.",
     "cta_primary": "Explorer les Propriétés",
-    "cta_secondary": "Prendre Rendez-vous"
+    "cta_secondary": "Parler à un Agent"
   },
   "listings": {
-    "title": "Propriétés en Vedette",
-    "subtitle": "Des maisons soigneusement sélectionnées alliant beauté et praticité.",
+    "title": "Propriétés en Vedette en Andorre",
+    "subtitle": "Des biens sélectionnés dans les meilleurs emplacements du pays.",
     "view_all": "Voir Toutes les Propriétés",
     "status": {
+      "all": "Toutes",
       "for_sale": "À Vendre",
       "sold": "Vendu",
       "rented": "Loué"
@@ -54,41 +55,68 @@
   },
   "features": {
     "label": "Pourquoi Nous Choisir",
-    "title": "Une Façon Plus Intelligente d'Acheter, Vendre et Louer",
-    "subtitle": "Nous sommes bien plus qu'une agence immobilière — nous sommes votre partenaire pour trouver l'endroit parfait à appeler chez vous.",
+    "title": "La Façon la Plus Simple d'Acheter, Vendre ou Louer en Andorre",
+    "subtitle": "Nous sommes bien plus qu'une agence immobilière — nous sommes votre partenaire local pour évoluer en toute confiance sur le marché immobilier andorran.",
     "items": [
       {
-        "title": "Expertise Locale",
-        "description": "Nos agents connaissent parfaitement les quartiers qu'ils servent, vous donnant un avantage privilégié dans chaque transaction."
+        "title": "Expertise des 7 Paroisses",
+        "description": "Nous connaissons parfaitement Andorre-la-Vieille, Escaldes-Engordany et l'ensemble des paroisses du pays, un avantage réel à chaque transaction."
       },
       {
-        "title": "Processus Transparent",
-        "description": "Pas de surprises. Nous vous guidons à chaque étape, de la première visite au jour de la signature."
+        "title": "Processus Transparent et Sans Surprises",
+        "description": "Nous vous accompagnons à chaque étape, y compris les démarches d'investissement étranger si nécessaire, de la première visite à la signature."
       },
       {
-        "title": "Stratégie Sur Mesure",
-        "description": "Chaque client reçoit un plan personnalisé basé sur ses objectifs, son calendrier et son budget."
+        "title": "Stratégie Fiscale et d'Investissement Sur Mesure",
+        "description": "Nous vous conseillons sur la résidence fiscale, la rentabilité et le financement pour prendre la meilleure décision selon votre profil."
       },
       {
-        "title": "Accompagnement Complet",
-        "description": "Du conseil hypothécaire à la coordination du déménagement, nous gérons les détails à votre place."
+        "title": "Accompagnement Complet, du Début à la Fin",
+        "description": "Du financement hypothécaire à la gestion des démarches administratives, nous gérons les détails à votre place."
       }
     ]
   },
   "testimonials": {
     "label": "Témoignages",
-    "title": "Ce Que Disent Nos Clients"
+    "title": "Ce Que Disent Nos Clients",
+    "items": [
+      {
+        "quote": "Travailler avec cette équipe a été un vrai plaisir. Ils nous ont trouvé le logement de nos rêves en moins de trois semaines. Nous ne pourrions pas être plus satisfaits.",
+        "authorName": "Sarah et James K.",
+        "authorRole": "Achat à Escaldes-Engordany"
+      },
+      {
+        "quote": "Totalement transparents dès le premier jour. Ils nous ont guidés à chaque étape sans jamais nous mettre la pression, et ont vendu notre appartement au-dessus du prix affiché.",
+        "authorName": "Marcus T.",
+        "authorRole": "Vente à Andorre-la-Vieille"
+      },
+      {
+        "quote": "En tant qu'acheteurs étrangers, le processus semblait intimidant, mais ils nous l'ont rendu simple et enthousiasmant. Un service exceptionnel.",
+        "authorName": "Priya M.",
+        "authorRole": "Achat à La Massana"
+      },
+      {
+        "quote": "Leur connaissance locale est incomparable. Ils connaissaient le bien avant même qu'il n'arrive sur le marché. Nous les recommandons sans hésiter.",
+        "authorName": "David et Claire W.",
+        "authorRole": "Achat à Encamp"
+      },
+      {
+        "quote": "Efficaces, professionnels et sincèrement attentionnés. Ils ont négocié un excellent prix et géré toute la paperasse sans accroc.",
+        "authorName": "Lisa R.",
+        "authorRole": "Location à Andorre-la-Vieille"
+      }
+    ]
   },
   "cta": {
-    "label": "Votre Prochain Pas",
-    "title": "Prêt à Trouver Votre Maison de Rêve ?",
-    "subtitle": "Commençons par une conversation. Réservez un appel gratuit avec l'un de nos agents aujourd'hui.",
+    "label": "Votre Prochaine Étape",
+    "title": "Prêt à Trouver Votre Bien Idéal en Andorre ?",
+    "subtitle": "Commençons par une conversation. Réservez un appel gratuit avec l'un de nos agents dès aujourd'hui.",
     "button": "Prendre Rendez-vous"
   },
   "blog": {
-    "label": "Notre Journal",
-    "title": "Perspectives et Actualités du Marché",
-    "subtitle": "Analyses expertes sur les tendances immobilières, conseils et actualités du marché local.",
+    "label": "Notre Blog",
+    "title": "Guides et Tendances du Marché Immobilier en Andorre",
+    "subtitle": "Fiscalité, résidence, investissement étranger et conseils pratiques pour acheter, vendre ou louer en Andorre.",
     "read_more": "Lire l'Article",
     "view_all": "Voir Tous les Articles",
     "min_read": "min de lecture",
@@ -96,24 +124,117 @@
     "by": "Par"
   },
   "about": {
-    "label": "Notre Histoire",
-    "title": "Une Agence Immobilière Fondée sur la Confiance",
-    "subtitle": "Nous croyons que trouver un foyer doit être excitant, pas stressant.",
+    "label": "À Propos",
+    "title": "Une Agence qui Connaît Vraiment l'Andorre",
+    "subtitle": "Nous aidons résidents et investisseurs étrangers à trouver, évaluer et acquérir leur bien idéal en Andorre, avec toute la clarté et le soutien qu'ils méritent.",
+    "story_label": "Notre Histoire",
+    "story_headline": "L'histoire derrière notre engagement envers l'Andorre",
+    "story_paragraphs": [
+      "Nous sommes nés d'une vision claire : faire de l'achat, de la vente ou de la location d'un bien en Andorre un processus transparent et humain, pour les résidents comme pour les acheteurs internationaux. Ce qui a commencé comme une petite équipe passionnée est devenu une agence immobilière à service complet, présente dans toutes les paroisses du pays.",
+      "Année après année, notre engagement envers l'intégrité, le détail et des relations sincères nous a permis d'accompagner des centaines de familles et d'investisseurs à Andorre-la-Vieille, Escaldes-Engordany et dans le reste du pays. Nous maîtrisons la fiscalité, les démarches d'investissement étranger et les particularités de chaque paroisse, pour que vous n'ayez pas à le faire."
+    ],
+    "quote_text": "Chaque bien que nous aidons à trouver est une occasion de changer la vie de quelqu'un en Andorre. Cette responsabilité guide tout ce que nous faisons — chaque appel, chaque visite, chaque négociation.",
+    "quote_author_name": "Laura Puig",
+    "quote_author_role": "Fondatrice et Agente Principale",
+    "mission_label": "Notre Mission",
+    "mission_headline": "L'objectif qui guide chaque détail",
+    "missions": [
+      {
+        "title": "Les Personnes d'Abord",
+        "body": "Chaque décision que nous prenons commence par une question : qu'est-ce qui est le mieux pour ceux qui nous font confiance ? Un foyer est bien plus qu'une transaction."
+      },
+      {
+        "title": "Experts du Marché Andorran",
+        "body": "Nous maîtrisons la fiscalité, la résidence et les particularités de chaque paroisse, alliant expertise locale et relation de confiance."
+      }
+    ],
+    "results_label": "Des Résultats Concrets",
+    "results_headline": "Quand la confiance se transforme en résultats",
+    "results_subtitle": "Notre approche centrée sur le client nous a permis de gagner la confiance et d'offrir des résultats durables sur le marché immobilier andorran.",
     "stats": [
-      { "value": "500+", "label": "Maisons Vendues" },
+      { "value": "500+", "label": "Biens Gérés" },
       { "value": "12", "label": "Ans d'Expérience" },
-      { "value": "98%", "label": "Satisfaction Client" },
-      { "value": "3", "label": "Villes Couvertes" }
+      { "value": "98%", "label": "Clients Satisfaits" },
+      { "value": "7", "label": "Paroisses Couvertes" }
+    ],
+    "team_label": "Notre Équipe",
+    "team_headline": "L'équipe dévouée derrière chaque transaction",
+    "team_subtitle": "Notre équipe réunit agents et conseillers engagés dans chaque détail, de la première visite à la signature.",
+    "team": [
+      { "name": "Laura Puig", "role": "Fondatrice et Agente Principale" },
+      { "name": "Marc Vila", "role": "Conseiller Immobilier Senior" },
+      { "name": "Clara Font", "role": "Responsable des Relations Clients" }
     ]
   },
   "contact": {
     "title": "Nous Contacter",
     "subtitle": "Remplissez le formulaire et l'un de nos agents vous contactera dans les 24 heures.",
+    "hero_label": "Nous Contacter",
+    "hero_headline": "Parlons de votre prochain bien en Andorre",
+    "hero_subheadline": "Une question ? Envie de réserver une visite ou simplement de nous dire bonjour ? Nous serions ravis de vous entendre.",
+    "info_email_label": "Email",
+    "info_phone_label": "Téléphone",
+    "info_hours_label": "Horaires",
+    "info_hours_value": "Lun–Ven, 9h à 18h",
+    "faq_label": "Questions Fréquentes",
+    "faq_headline": "Réponses rapides avant de nous contacter",
+    "faq_subtitle": "Une question en tête ? Consultez ci-dessous — ou envoyez-nous un message, nous nous occupons du reste.",
+    "faq": [
+      {
+        "q": "Puis-je acheter un bien en Andorre si je ne suis pas résident ?",
+        "a": "Oui. L'Andorre autorise l'achat de biens immobiliers par des non-résidents, mais une autorisation d'investissement étranger doit être demandée auprès du Gouvernement andorran avant de finaliser la transaction. Nous vous accompagnons dans cette démarche pour un processus rapide et sans surprises."
+      },
+      {
+        "q": "Quelles paroisses couvrez-vous ?",
+        "a": "Nous intervenons dans tout le pays : Andorre-la-Vieille, Escaldes-Engordany, Encamp, La Massana, Ordino, Sant Julià de Lòria et Canillo. Nous connaissons les particularités de chaque paroisse pour vous aider à trouver l'emplacement qui vous convient le mieux."
+      },
+      {
+        "q": "Combien de temps dure le processus d'achat d'un bien ?",
+        "a": "En moyenne, entre 4 et 8 semaines à partir de l'acceptation d'une offre, selon le financement et, le cas échéant, l'obtention de l'autorisation d'investissement étranger. Nous vous tenons informé à chaque étape."
+      },
+      {
+        "q": "Proposez-vous aussi la location de biens ?",
+        "a": "Oui, nous travaillons aussi bien avec des acheteurs qu'avec des locataires. Que vous cherchiez une location longue durée ou une résidence secondaire saisonnière, nous vous aidons à trouver la solution adaptée."
+      },
+      {
+        "q": "Puis-je obtenir la résidence fiscale en Andorre en achetant un bien ?",
+        "a": "L'achat d'un bien immobilier fait souvent partie du processus de résidence fiscale en Andorre, mais les conditions exactes dépendent de votre profil et du type de résidence demandé. Nous vous conseillons pour comprendre les options adaptées à votre situation."
+      }
+    ],
+    "testimonials_headline": "Encore des doutes ? Voici ce que disent nos clients",
+    "testimonials_subtitle": "Des mots authentiques de personnes qui nous ont fait confiance — et ne l'ont jamais regretté.",
+    "testimonials": [
+      {
+        "name": "Sarah et James K.",
+        "role": "Achat à Escaldes-Engordany",
+        "quote": "Travailler avec cette équipe a été un vrai plaisir. Ils nous ont trouvé l'appartement de nos rêves en moins de trois semaines, en gérant aussi toutes les démarches d'investissement étranger."
+      },
+      {
+        "name": "Marcus T.",
+        "role": "Vente à Andorre-la-Vieille",
+        "quote": "Totalement transparents dès le premier jour. Ils nous ont guidés à chaque étape et ont vendu notre appartement au-dessus du prix affiché."
+      },
+      {
+        "name": "Priya M.",
+        "role": "Achat à La Massana",
+        "quote": "En tant qu'acheteurs étrangers, le processus semblait complexe, mais ils nous l'ont rendu simple et clair à chaque instant. Un service exceptionnel."
+      },
+      {
+        "name": "David et Claire W.",
+        "role": "Achat à Encamp",
+        "quote": "Leur connaissance locale est incomparable. Ils connaissaient le bien avant même qu'il n'arrive sur le marché."
+      }
+    ],
     "form": {
       "name": "Nom Complet",
       "email": "Adresse Email",
       "phone": "Numéro de Téléphone",
-      "property": "Propriété d'Intérêt",
+      "property": "Comment pouvons-nous vous aider ?",
+      "option_buying": "Acheter un bien",
+      "option_selling": "Vendre mon bien",
+      "option_renting": "Louer",
+      "option_valuation": "Estimation du bien",
+      "option_other": "Autre",
       "message": "Votre Message",
       "submit": "Envoyer le Message",
       "success_title": "Message Envoyé !",
@@ -122,7 +243,7 @@
     }
   },
   "footer": {
-    "tagline": "Votre guide de confiance pour trouver la maison parfaite.",
+    "tagline": "Votre guide de confiance pour trouver la maison parfaite en Andorre.",
     "links": "Liens Rapides",
     "contact": "Contact",
     "socials": "Suivez-nous",
@@ -141,6 +262,14 @@
     "beds_label": "Chambres",
     "baths_label": "Salles de Bain",
     "parking_label": "Stationnement",
-    "type_label": "Type / Catégorie"
+    "type_label": "Type / Catégorie",
+    "status_label": "Statut",
+    "back_to_listings": "Retour aux propriétés",
+    "show_all_photos": "Voir toutes les photos",
+    "listing_price_label": "Prix de vente",
+    "location_surroundings_label": "Emplacement et environs",
+    "location_note": "Situé à {location}, ce bien se trouve dans l'un des secteurs les plus prisés du pays. Proche des commerces, restaurants et accès aux pistes de ski.",
+    "location_map_label": "Carte de localisation",
+    "map_integration_note": "Intégration de carte via Google Maps"
   }
 }

@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { localizedPath } from "@/lib/site";
 import FadeInUp from "@/components/ui/FadeInUp";
 import SectionLabel from "@/components/ui/SectionLabel";
 
@@ -49,7 +50,7 @@ export default function CTABanner() {
         </FadeInUp>
         <FadeInUp delay={0.28}>
           <Link
-            href={`/${locale}/contact`}
+            href={localizedPath(locale, "/contact")}
             className="inline-flex items-center gap-2 bg-accent text-white font-medium px-8 py-4 rounded-full hover:bg-accent-dark transition-colors text-sm"
           >
             {t("button")}

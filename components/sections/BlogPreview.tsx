@@ -5,6 +5,7 @@ import { ArrowRight, Clock } from "lucide-react";
 import FadeInUp from "@/components/ui/FadeInUp";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { formatDate } from "@/lib/utils";
+import { localizedPath } from "@/lib/site";
 import { DEMO_POSTS, type BlogPost } from "@/lib/demo-blog";
 
 interface BlogPreviewProps {
@@ -29,7 +30,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
             <p className="text-sm text-muted mt-3 max-w-sm leading-relaxed">{t("subtitle")}</p>
           </div>
           <Link
-            href={`/${locale}/blog`}
+            href={localizedPath(locale, "/blog")}
             className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all flex-shrink-0"
           >
             {t("view_all")} <ArrowRight size={16} />
@@ -74,7 +75,7 @@ export function BlogCard({
     post.mainImage ?? "https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=800&q=80";
 
   return (
-    <Link href={`/${locale}/blog/${post.slug.current}`} className="group block">
+    <Link href={localizedPath(locale, `/blog/${post.slug.current}`)} className="group block">
       <article className="bg-card rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-300">
         {/* Image */}
         <div className={`relative overflow-hidden ${large ? "aspect-[16/9]" : "aspect-[2/1]"}`}>

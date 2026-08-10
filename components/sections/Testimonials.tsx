@@ -17,47 +17,12 @@ interface Testimonial {
   authorImage?: string;
 }
 
-const DEMO_TESTIMONIALS: Testimonial[] = [
-  {
-    _id: "1",
-    quote: "Working with this team was an absolute pleasure. They found us our dream home in under three weeks. We couldn't be happier.",
-    authorName: "Sarah & James K.",
-    authorRole: "Bought in Wasilla",
-    rating: 5,
-    authorImage: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
-  },
-  {
-    _id: "2",
-    quote: "Completely transparent from day one. They walked us through every step and we never felt pressured. Sold our home above asking price.",
-    authorName: "Marcus T.",
-    authorRole: "Sold in Anchorage",
-    rating: 5,
-    authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-  },
-  {
-    _id: "3",
-    quote: "As first-time buyers the process seemed daunting, but they made it feel simple and exciting. Exceptional service.",
-    authorName: "Priya M.",
-    authorRole: "Bought in Palmer",
-    rating: 5,
-    authorImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
-  },
-  {
-    _id: "4",
-    quote: "Their local knowledge is unmatched. They knew about the listing before it even hit the market. Highly recommend.",
-    authorName: "David & Claire W.",
-    authorRole: "Bought in Wasilla",
-    rating: 5,
-    authorImage: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&q=80",
-  },
-  {
-    _id: "5",
-    quote: "Efficient, professional, and genuinely caring. They negotiated a fantastic deal and handled all the paperwork seamlessly.",
-    authorName: "Lisa R.",
-    authorRole: "Rented in Anchorage",
-    rating: 5,
-    authorImage: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=200&q=80",
-  },
+const DEMO_IMAGES = [
+  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
+  "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&q=80",
+  "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=200&q=80",
 ];
 
 interface TestimonialsProps {
@@ -66,7 +31,14 @@ interface TestimonialsProps {
 
 export default function Testimonials({ testimonials }: TestimonialsProps) {
   const t = useTranslations("testimonials");
-  const items = testimonials?.length ? testimonials : DEMO_TESTIMONIALS;
+  const translatedItems: Omit<Testimonial, "_id" | "rating" | "authorImage">[] = t.raw("items");
+  const demoTestimonials: Testimonial[] = translatedItems.map((item, i) => ({
+    ...item,
+    _id: String(i + 1),
+    rating: 5,
+    authorImage: DEMO_IMAGES[i % DEMO_IMAGES.length],
+  }));
+  const items = testimonials?.length ? testimonials : demoTestimonials;
   const doubled = [...items, ...items]; // duplicate for seamless loop
 
   const trackRef = useRef<HTMLDivElement>(null);

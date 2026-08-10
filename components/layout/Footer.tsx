@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { localizedPath } from "@/lib/site";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -29,11 +30,11 @@ export default function Footer() {
             <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">{t("links")}</p>
             <ul className="space-y-2">
               {[
-                { href: `/${locale}`, label: nav("home") },
-                { href: `/${locale}/about`, label: nav("about") },
-                { href: `/${locale}/listings`, label: nav("listings") },
-                { href: `/${locale}/blog`, label: nav("blog") },
-                { href: `/${locale}/contact`, label: nav("contact") },
+                { href: localizedPath(locale), label: nav("home") },
+                { href: localizedPath(locale, "/about"), label: nav("about") },
+                { href: localizedPath(locale, "/listings"), label: nav("listings") },
+                { href: localizedPath(locale, "/blog"), label: nav("blog") },
+                { href: localizedPath(locale, "/contact"), label: nav("contact") },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-white/60 hover:text-white transition-colors">
@@ -48,10 +49,10 @@ export default function Footer() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">{t("contact")}</p>
             <ul className="space-y-2 text-sm text-white/60">
-              <li>6798 Glacier View Dr,</li>
-              <li>Wasilla, Alaska, USA</li>
-              <li className="pt-2">+1 (415) 555-0198</li>
-              <li>info@listings.com</li>
+              <li>Avinguda Meritxell, 1</li>
+              <li>AD500 Andorra la Vella, Andorra</li>
+              <li className="pt-2">+376 800 100</li>
+              <li>info@thesweethomeco.ad</li>
             </ul>
 
             <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mt-6 mb-3">{t("socials")}</p>
@@ -77,9 +78,9 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-white/30">
           <p>© {new Date().getFullYear()} The Sweet Home Co. {t("rights")}</p>
           <div className="flex gap-4">
-            <Link href="#" className="hover:text-white/60 transition-colors">About</Link>
-            <Link href={`/${locale}/listings`} className="hover:text-white/60 transition-colors">Listings</Link>
-            <Link href={`/${locale}/contact`} className="hover:text-white/60 transition-colors">Contact</Link>
+            <Link href={localizedPath(locale, "/about")} className="hover:text-white/60 transition-colors">{nav("about")}</Link>
+            <Link href={localizedPath(locale, "/listings")} className="hover:text-white/60 transition-colors">{nav("listings")}</Link>
+            <Link href={localizedPath(locale, "/contact")} className="hover:text-white/60 transition-colors">{nav("contact")}</Link>
           </div>
         </div>
       </div>

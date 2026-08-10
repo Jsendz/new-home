@@ -1,24 +1,24 @@
 {
   "meta": {
     "home": {
-      "title": "The Sweet Home Co. | Inmobiliaria en Wasilla, Anchorage y Palmer",
-      "description": "Encuentra tu hogar perfecto en el Valle de Mat-Su, Alaska. Explora propiedades y trabaja con una agencia inmobiliaria construida sobre la confianza."
+      "title": "Inmobiliaria en Andorra | Pisos y Casas en Venta y Alquiler | The Sweet Home Co.",
+      "description": "Agencia inmobiliaria de confianza en Andorra. Descubre pisos, áticos y casas en venta y alquiler en todas las parroquias, con asesoramiento experto para residentes y no residentes."
     },
     "about": {
-      "title": "Sobre Nosotros | The Sweet Home Co.",
-      "description": "Conoce al equipo detrás de The Sweet Home Co. — una agencia inmobiliaria construida sobre la confianza, la experiencia local y el cuidado genuino."
+      "title": "Sobre Nosotros | Inmobiliaria en Andorra | The Sweet Home Co.",
+      "description": "Conoce al equipo de The Sweet Home Co., agencia inmobiliaria local especializada en compraventa y alquiler de inmuebles en Andorra la Vella y el resto de parroquias del país."
     },
     "contact": {
-      "title": "Contáctanos | The Sweet Home Co.",
-      "description": "¿Listo para comprar, vender o alquilar? Contacta con The Sweet Home Co. y uno de nuestros agentes te responderá en 24 horas."
+      "title": "Contacta con Nuestra Inmobiliaria en Andorra | The Sweet Home Co.",
+      "description": "¿Quieres comprar, vender o alquilar un inmueble en Andorra? Contacta con The Sweet Home Co. y uno de nuestros agentes te responderá en menos de 24 horas."
     },
     "listings": {
-      "title": "Propiedades en Venta | The Sweet Home Co.",
-      "description": "Explora casas en venta y alquiler en Wasilla, Anchorage y Palmer — propiedades seleccionadas por The Sweet Home Co."
+      "title": "Pisos, Áticos y Casas en Venta en Andorra | The Sweet Home Co.",
+      "description": "Explora nuestra selección de pisos, áticos, casas y chalets en venta y alquiler en Andorra la Vella, Escaldes-Engordany y el resto de parroquias del país."
     },
     "blog": {
-      "title": "Artículos y Tendencias del Mercado | The Sweet Home Co.",
-      "description": "Consejos inmobiliarios, tendencias del mercado de Alaska y asesoría experta del equipo de The Sweet Home Co."
+      "title": "Guías del Mercado Inmobiliario en Andorra | The Sweet Home Co.",
+      "description": "Fiscalidad, residencia, inversión extranjera y tendencias del mercado inmobiliario en Andorra, explicadas por expertos locales de The Sweet Home Co."
     }
   },
   "nav": {
@@ -29,17 +29,18 @@
     "contact": "Trabaja con nosotros"
   },
   "hero": {
-    "label": "Tu Socio Inmobiliario de Confianza",
-    "headline": "Encuentra el Lugar Perfecto para Llamar Hogar",
-    "subheadline": "Te ayudamos a descubrir, evaluar y asegurar las mejores propiedades — con claridad, cuidado y experiencia.",
+    "label": "Tu Inmobiliaria de Confianza en Andorra",
+    "headline": "Encuentra tu Hogar Perfecto en Andorra",
+    "subheadline": "Te ayudamos a descubrir, evaluar y adquirir las mejores propiedades del país — con claridad, experiencia local y acompañamiento completo para residentes y no residentes.",
     "cta_primary": "Ver Propiedades",
-    "cta_secondary": "Reservar Llamada"
+    "cta_secondary": "Habla con un Agente"
   },
   "listings": {
-    "title": "Propiedades Destacadas",
-    "subtitle": "Hogares cuidadosamente seleccionados que equilibran belleza y practicidad.",
+    "title": "Propiedades Destacadas en Andorra",
+    "subtitle": "Inmuebles seleccionados en las mejores ubicaciones del país.",
     "view_all": "Ver Todas las Propiedades",
     "status": {
+      "all": "Todas",
       "for_sale": "En Venta",
       "sold": "Vendido",
       "rented": "Alquilado"
@@ -54,41 +55,68 @@
   },
   "features": {
     "label": "¿Por Qué Elegirnos?",
-    "title": "Una Forma Más Inteligente de Comprar, Vender y Alquilar",
-    "subtitle": "Somos más que una agencia inmobiliaria: somos tu compañero para encontrar el lugar perfecto al que llamar hogar.",
+    "title": "La Forma Más Sencilla de Comprar, Vender o Alquilar en Andorra",
+    "subtitle": "Somos más que una inmobiliaria: somos tu socio local para moverte con confianza por el mercado inmobiliario andorrano.",
     "items": [
       {
-        "title": "Conocimiento Local Experto",
-        "description": "Nuestros agentes viven y respiran los vecindarios que sirven, dándote una ventaja privilegiada en cada transacción."
+        "title": "Conocimiento Experto de las 7 Parroquias",
+        "description": "Conocemos a fondo Andorra la Vella, Escaldes-Engordany y el resto de parroquias del país, dándote una ventaja real en cada operación."
       },
       {
-        "title": "Proceso Transparente",
-        "description": "Sin sorpresas. Te guiamos en cada paso, desde la primera visita hasta el día del cierre."
+        "title": "Proceso Transparente y Sin Sorpresas",
+        "description": "Te acompañamos en cada paso, incluidos los trámites de inversión extranjera cuando sea necesario, desde la primera visita hasta la firma."
       },
       {
-        "title": "Estrategia Personalizada",
-        "description": "Cada cliente recibe un plan a medida basado en sus objetivos, tiempo disponible y presupuesto."
+        "title": "Estrategia Fiscal y de Inversión a Medida",
+        "description": "Te asesoramos sobre residencia fiscal, rentabilidad y financiación para que tomes la mejor decisión según tu perfil."
       },
       {
-        "title": "Soporte Completo",
-        "description": "Desde orientación hipotecaria hasta coordinación de mudanza, manejamos los detalles por ti."
+        "title": "Acompañamiento Completo, de Principio a Fin",
+        "description": "Desde la financiación hipotecaria hasta la gestión de los trámites administrativos, nos ocupamos de todo por ti."
       }
     ]
   },
   "testimonials": {
     "label": "Historias de Clientes",
-    "title": "Lo Que Dicen Nuestros Clientes"
+    "title": "Lo Que Dicen Nuestros Clientes",
+    "items": [
+      {
+        "quote": "Trabajar con este equipo fue un auténtico placer. Encontraron el hogar de nuestros sueños en menos de tres semanas. No podríamos estar más contentos.",
+        "authorName": "Sarah y James K.",
+        "authorRole": "Compra en Escaldes-Engordany"
+      },
+      {
+        "quote": "Totalmente transparentes desde el primer día. Nos guiaron en cada paso sin presión y vendieron nuestro piso por encima del precio de salida.",
+        "authorName": "Marcus T.",
+        "authorRole": "Venta en Andorra la Vella"
+      },
+      {
+        "quote": "Como compradores extranjeros, el proceso parecía intimidante, pero nos lo hicieron sentir sencillo y emocionante. Un servicio excepcional.",
+        "authorName": "Priya M.",
+        "authorRole": "Compra en La Massana"
+      },
+      {
+        "quote": "Su conocimiento local no tiene comparación. Conocían la propiedad incluso antes de que saliera al mercado. Los recomendamos sin dudarlo.",
+        "authorName": "David y Claire W.",
+        "authorRole": "Compra en Encamp"
+      },
+      {
+        "quote": "Eficientes, profesionales y con un trato genuino. Negociaron un precio excelente y gestionaron todo el papeleo de forma impecable.",
+        "authorName": "Lisa R.",
+        "authorRole": "Alquiler en Andorra la Vella"
+      }
+    ]
   },
   "cta": {
     "label": "Tu Próximo Paso",
-    "title": "¿Listo para Encontrar Tu Hogar Ideal?",
-    "subtitle": "Empecemos con una conversación. Reserva una llamada gratuita con uno de nuestros agentes hoy.",
+    "title": "¿Listo para Encontrar tu Inmueble Ideal en Andorra?",
+    "subtitle": "Empecemos con una conversación. Reserva una llamada gratuita con uno de nuestros agentes hoy mismo.",
     "button": "Reservar Llamada"
   },
   "blog": {
-    "label": "Nuestro Diario",
-    "title": "Perspectivas y Actualizaciones del Mercado",
-    "subtitle": "Perspectivas expertas sobre tendencias inmobiliarias, consejos y noticias del mercado local.",
+    "label": "Nuestro Blog",
+    "title": "Guías y Tendencias del Mercado Inmobiliario en Andorra",
+    "subtitle": "Fiscalidad, residencia, inversión extranjera y consejos prácticos para comprar, vender o alquilar en Andorra.",
     "read_more": "Leer Artículo",
     "view_all": "Ver Todos los Artículos",
     "min_read": "min de lectura",
@@ -96,24 +124,117 @@
     "by": "Por"
   },
   "about": {
-    "label": "Nuestra Historia",
-    "title": "Una Agencia Inmobiliaria Construida sobre la Confianza",
-    "subtitle": "Creemos que encontrar un hogar debe sentirse emocionante, no estresante.",
+    "label": "Sobre Nosotros",
+    "title": "Una Inmobiliaria que Conoce Andorra de Verdad",
+    "subtitle": "Ayudamos a residentes e inversores extranjeros a encontrar, evaluar y adquirir su inmueble ideal en Andorra, con toda la claridad y el apoyo que merecen.",
+    "story_label": "Nuestra Historia",
+    "story_headline": "La historia detrás de nuestro compromiso con Andorra",
+    "story_paragraphs": [
+      "Nacimos con una visión clara: hacer que comprar, vender o alquilar un inmueble en Andorra fuera un proceso transparente y cercano, tanto para residentes como para compradores internacionales. Lo que empezó como un pequeño equipo apasionado se ha convertido en una inmobiliaria de servicio completo, presente en todas las parroquias del país.",
+      "Año tras año, nuestro compromiso con la integridad, el detalle y las relaciones genuinas nos ha permitido acompañar a cientos de familias e inversores en Andorra la Vella, Escaldes-Engordany y el resto del país. Dominamos la fiscalidad, los trámites de inversión extranjera y las particularidades de cada parroquia, para que tú no tengas que hacerlo."
+    ],
+    "quote_text": "Cada inmueble que ayudamos a encontrar es una oportunidad de cambiar la vida de alguien en Andorra. Esa responsabilidad guía todo lo que hacemos — cada llamada, cada visita, cada negociación.",
+    "quote_author_name": "Laura Puig",
+    "quote_author_role": "Fundadora y Agente Principal",
+    "mission_label": "Nuestra Misión",
+    "mission_headline": "El propósito que guía cada detalle",
+    "missions": [
+      {
+        "title": "Las personas primero",
+        "body": "Cada decisión que tomamos empieza con una pregunta: ¿qué es lo mejor para quien confía en nosotros? Creemos que un hogar es mucho más que una transacción."
+      },
+      {
+        "title": "Expertos en el mercado andorrano",
+        "body": "Conocemos a fondo la fiscalidad, la residencia y las particularidades de cada parroquia, combinando conocimiento local con un trato cercano y honesto."
+      }
+    ],
+    "results_label": "Resultados Demostrados",
+    "results_headline": "Donde la confianza se convierte en resultados",
+    "results_subtitle": "Nuestro enfoque centrado en el cliente nos ha permitido ganarnos la confianza y ofrecer resultados duraderos en el mercado inmobiliario de Andorra.",
     "stats": [
-      { "value": "500+", "label": "Casas Vendidas" },
+      { "value": "500+", "label": "Inmuebles Gestionados" },
       { "value": "12", "label": "Años de Experiencia" },
-      { "value": "98%", "label": "Satisfacción del Cliente" },
-      { "value": "3", "label": "Ciudades Cubiertas" }
+      { "value": "98%", "label": "Clientes Satisfechos" },
+      { "value": "7", "label": "Parroquias Cubiertas" }
+    ],
+    "team_label": "Nuestro Equipo",
+    "team_headline": "El equipo dedicado detrás de cada operación",
+    "team_subtitle": "Nuestro equipo reúne a agentes y asesores comprometidos con cada detalle, desde la primera visita hasta la firma.",
+    "team": [
+      { "name": "Laura Puig", "role": "Fundadora y Agente Principal" },
+      { "name": "Marc Vila", "role": "Asesor Inmobiliario Senior" },
+      { "name": "Clara Font", "role": "Responsable de Relaciones con Clientes" }
     ]
   },
   "contact": {
     "title": "Contáctanos",
     "subtitle": "Completa el formulario y uno de nuestros agentes se pondrá en contacto en 24 horas.",
+    "hero_label": "Contáctanos",
+    "hero_headline": "Hablemos de tu próximo inmueble en Andorra",
+    "hero_subheadline": "¿Tienes alguna pregunta? ¿Quieres reservar una visita o simplemente saludar? Nos encantará escucharte.",
+    "info_email_label": "Correo",
+    "info_phone_label": "Teléfono",
+    "info_hours_label": "Horario",
+    "info_hours_value": "Lun–Vie, 9h a 18h",
+    "faq_label": "Preguntas Frecuentes",
+    "faq_headline": "Respuestas rápidas antes de contactarnos",
+    "faq_subtitle": "¿Tienes alguna duda? Consúltala aquí abajo — o envíanos un mensaje, estaremos encantados de ayudarte.",
+    "faq": [
+      {
+        "q": "¿Puedo comprar un inmueble en Andorra si no soy residente?",
+        "a": "Sí. Andorra permite la compra de inmuebles por parte de no residentes, aunque es necesario solicitar una autorización de inversión extranjera al Govern d'Andorra antes de formalizar la operación. Te acompañamos en todo este trámite para que el proceso sea ágil y sin sorpresas."
+      },
+      {
+        "q": "¿Qué parroquias cubrís?",
+        "a": "Trabajamos en todo el país: Andorra la Vella, Escaldes-Engordany, Encamp, La Massana, Ordino, Sant Julià de Lòria y Canillo. Conocemos las particularidades de cada parroquia para ayudarte a encontrar la ubicación que mejor se adapte a ti."
+      },
+      {
+        "q": "¿Cuánto tarda el proceso de compra de un inmueble?",
+        "a": "De media, entre 4 y 8 semanas desde que se acepta una oferta, dependiendo de la financiación y, en su caso, de la resolución de la autorización de inversión extranjera. Te informaremos en cada paso."
+      },
+      {
+        "q": "¿También ofrecéis alquiler de inmuebles?",
+        "a": "Sí, trabajamos tanto con compradores como con inquilinos. Ya busques un alquiler de larga duración o una segunda residencia de temporada, te ayudamos a encontrar la opción adecuada."
+      },
+      {
+        "q": "¿Puedo obtener la residencia fiscal en Andorra comprando un inmueble?",
+        "a": "La compra de un inmueble suele ser un paso dentro del proceso de residencia fiscal en Andorra, aunque los requisitos exactos dependen de tu perfil y del tipo de residencia solicitada. Te asesoramos para que entiendas las opciones disponibles en tu caso."
+      }
+    ],
+    "testimonials_headline": "¿Aún tienes dudas? Esto es lo que dicen nuestros clientes",
+    "testimonials_subtitle": "Palabras reales de personas que confiaron en nosotros — y no se arrepintieron.",
+    "testimonials": [
+      {
+        "name": "Sarah y James K.",
+        "role": "Compra en Escaldes-Engordany",
+        "quote": "Trabajar con este equipo fue un auténtico placer. Encontraron el piso de nuestros sueños en menos de tres semanas, gestionando también todos los trámites de inversión extranjera."
+      },
+      {
+        "name": "Marcus T.",
+        "role": "Venta en Andorra la Vella",
+        "quote": "Totalmente transparentes desde el primer día. Nos guiaron en cada paso y vendieron nuestro piso por encima del precio de salida."
+      },
+      {
+        "name": "Priya M.",
+        "role": "Compra en La Massana",
+        "quote": "Como compradores extranjeros, el proceso parecía complicado, pero nos lo hicieron sentir sencillo y claro en todo momento. Un servicio excepcional."
+      },
+      {
+        "name": "David y Claire W.",
+        "role": "Compra en Encamp",
+        "quote": "Su conocimiento local no tiene comparación. Conocían la propiedad incluso antes de que saliera al mercado."
+      }
+    ],
     "form": {
       "name": "Nombre Completo",
       "email": "Correo Electrónico",
       "phone": "Número de Teléfono",
-      "property": "Propiedad de Interés",
+      "property": "¿En qué podemos ayudarte?",
+      "option_buying": "Comprar un inmueble",
+      "option_selling": "Vender mi inmueble",
+      "option_renting": "Alquilar",
+      "option_valuation": "Valoración del inmueble",
+      "option_other": "Otro",
       "message": "Tu Mensaje",
       "submit": "Enviar Mensaje",
       "success_title": "¡Mensaje Enviado!",
@@ -122,7 +243,7 @@
     }
   },
   "footer": {
-    "tagline": "Tu guía de confianza para encontrar el hogar perfecto.",
+    "tagline": "Tu guía de confianza para encontrar el hogar perfecto en Andorra.",
     "links": "Enlaces Rápidos",
     "contact": "Contacto",
     "socials": "Síguenos",
@@ -141,6 +262,14 @@
     "beds_label": "Habitaciones",
     "baths_label": "Baños",
     "parking_label": "Estacionamiento",
-    "type_label": "Tipo / Categoría"
+    "type_label": "Tipo / Categoría",
+    "status_label": "Estado",
+    "back_to_listings": "Volver a propiedades",
+    "show_all_photos": "Ver todas las fotos",
+    "listing_price_label": "Precio de venta",
+    "location_surroundings_label": "Ubicación y entorno",
+    "location_note": "Situado en {location}, este inmueble se encuentra en una de las zonas más solicitadas del país. Cerca de comercios, restaurantes y acceso a las pistas de esquí.",
+    "location_map_label": "Mapa de ubicación",
+    "map_integration_note": "Integración de mapa vía Google Maps"
   }
 }

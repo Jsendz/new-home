@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Search } from "lucide-react";
+import { localizedPath } from "@/lib/site";
 
 // ── Animation config ────────────────────────────────────────────────────────
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -127,7 +128,7 @@ export default function Hero() {
           ))}
 
           <Link
-            href={`/${locale}/listings`}
+            href={localizedPath(locale, "/listings")}
             className="flex items-center justify-center gap-2 bg-navy hover:bg-foreground text-white text-sm font-semibold rounded-xl px-7 py-4 transition-colors duration-200 active:scale-95 mt-1 md:mt-0 md:ml-2 flex-shrink-0 w-full md:w-auto"
           >
             <Search size={15} />

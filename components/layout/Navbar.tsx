@@ -6,19 +6,21 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { localizedPath } from "@/lib/site";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { key: "home",     href: (l: string) => `/${l}` },
-  { key: "listings", href: (l: string) => `/${l}/listings` },
-  { key: "blog",     href: (l: string) => `/${l}/blog` },
-  { key: "about",    href: (l: string) => `/${l}/about` },
+  { key: "home",     href: (l: string) => localizedPath(l) },
+  { key: "listings", href: (l: string) => localizedPath(l, "/listings") },
+  { key: "blog",     href: (l: string) => localizedPath(l, "/blog") },
+  { key: "about",    href: (l: string) => localizedPath(l, "/about") },
 ];
 
 const LOCALES = [
-  { code: "en", label: "EN" },
+  { code: "ca", label: "CA" },
   { code: "es", label: "ES" },
   { code: "fr", label: "FR" },
+  { code: "en", label: "EN" },
 ];
 
 export default function Navbar() {
@@ -59,7 +61,7 @@ export default function Navbar() {
 
           {/* ── Logo ── */}
           <Link
-            href={`/${locale}`}
+            href={localizedPath(locale)}
             className="flex-shrink-0 flex items-center gap-2.5 mr-auto"
           >
             {/* S-house logomark */}
@@ -108,7 +110,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-5 ml-auto">
             <LocaleSwitcher locale={locale} />
             <Link
-              href={`/${locale}/contact`}
+              href={localizedPath(locale, "/contact")}
               className="text-sm font-semibold px-5 py-2 rounded-full bg-accent text-white hover:bg-accent-dark active:scale-95 transition-all duration-200"
             >
               {t("contact")}
@@ -196,7 +198,7 @@ export default function Navbar() {
                   className="pt-5 flex flex-col gap-4"
                 >
                   <Link
-                    href={`/${locale}/contact`}
+                    href={localizedPath(locale, "/contact")}
                     className="bg-accent text-white text-sm font-semibold px-6 py-3 rounded-full text-center hover:bg-accent-dark transition-colors"
                   >
                     {t("contact")}
@@ -207,7 +209,7 @@ export default function Navbar() {
                     {LOCALES.map(({ code, label }) => (
                       <Link
                         key={code}
-                        href={`/${code}`}
+                        href={localizedPath(code)}
                         className={cn(
                           "text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors",
                           locale === code
@@ -245,7 +247,7 @@ function LocaleSwitcher({
         {LOCALES.map(({ code, label }) => (
           <Link
             key={code}
-            href={`/${code}`}
+            href={localizedPath(code)}
             className={cn(
               "text-[11px] font-semibold px-2 py-0.5 rounded-full transition-colors duration-200",
               locale === code
@@ -265,7 +267,7 @@ function LocaleSwitcher({
       {LOCALES.map(({ code, label }) => (
         <Link
           key={code}
-          href={`/${code}`}
+          href={localizedPath(code)}
           className={cn(
             "text-[11px] font-semibold px-2.5 py-1 rounded-full transition-all duration-200",
             locale === code

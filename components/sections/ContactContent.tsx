@@ -5,67 +5,25 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, Clock, Plus, Minus } from "lucide-react";
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import FadeInUp from "@/components/ui/FadeInUp";
 import SectionLabel from "@/components/ui/SectionLabel";
 
-const FAQ = [
-  {
-    q: "How do I get started buying a home?",
-    a: "Start by scheduling a free consultation with one of our agents. We'll walk you through your budget, neighborhood preferences, and timeline — no pressure, just clarity.",
-  },
-  {
-    q: "What areas do you serve?",
-    a: "We specialize in Wasilla, Anchorage, Palmer, Eagle River, and surrounding Mat-Su Valley communities.",
-  },
-  {
-    q: "How long does the buying process take?",
-    a: "On average 30–60 days once an offer is accepted, depending on financing and inspection timelines. We'll keep you informed at every step.",
-  },
-  {
-    q: "Do you help with rentals?",
-    a: "Yes — we work with both buyers and renters. Whether you're looking for a long-term lease or a seasonal rental, we can help you find the right fit.",
-  },
-  {
-    q: "Can I sell and buy a new home at the same time?",
-    a: "Absolutely. We have experience coordinating simultaneous transactions and can help you structure your timeline to minimize gaps and stress.",
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Sarah & James K.",
-    role: "Bought in Wasilla",
-    quote: "Working with this team was an absolute pleasure. They found us our dream home in under three weeks.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
-  },
-  {
-    name: "Marcus T.",
-    role: "Sold in Anchorage",
-    quote: "Completely transparent from day one. They walked us through every step and sold our home above asking price.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-  },
-  {
-    name: "Priya M.",
-    role: "Bought in Palmer",
-    quote: "As first-time buyers the process seemed daunting, but they made it feel simple and exciting. Exceptional service.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
-  },
-  {
-    name: "David & Claire W.",
-    role: "Bought in Wasilla",
-    quote: "Their local knowledge is unmatched. They knew about the listing before it even hit the market.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&q=80",
-  },
+const TESTIMONIAL_IMAGES = [
+  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
+  "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&q=80",
 ];
 
 export default function ContactContent() {
+  const t = useTranslations("contact");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [form, setForm]       = useState({ fullName: "", email: "", propertyOfInterest: "", message: "" });
   const [status, setStatus]   = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const faq = t.raw("faq") as { q: string; a: string }[];
+  const testimonials = t.raw("testimonials") as { name: string; role: string; quote: string }[];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,19 +51,19 @@ export default function ContactContent() {
 
             {/* Left: info */}
             <FadeInUp>
-              <SectionLabel className="text-white/50 mb-4">Contact us</SectionLabel>
+              <SectionLabel className="text-white/50 mb-4">{t("hero_label")}</SectionLabel>
               <h1 className="font-display text-display-lg text-white tracking-wider mb-4">
-                Let&apos;s connect
+                {t("hero_headline")}
               </h1>
               <p className="text-sm text-white/60 leading-relaxed mb-10 max-w-sm">
-                Got a question? Want to schedule a viewing or just say hi? We&apos;d love to hear from you.
+                {t("hero_subheadline")}
               </p>
 
               <ul className="space-y-6">
                 {[
-                  { Icon: Mail,  label: "Email",  value: "info@thesweethomeco.com" },
-                  { Icon: Phone, label: "Phone",  value: "+1 (415) 555-0198" },
-                  { Icon: Clock, label: "Hours",  value: "Mon–Fri, 9am to 6pm" },
+                  { Icon: Mail,  label: t("info_email_label"), value: "info@thesweethomeco.ad" },
+                  { Icon: Phone, label: t("info_phone_label"), value: "+376 800 100" },
+                  { Icon: Clock, label: t("info_hours_label"), value: t("info_hours_value") },
                 ].map(({ Icon, label, value }) => (
                   <li key={label} className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
@@ -140,20 +98,20 @@ export default function ContactContent() {
                     <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                       <Mail size={20} className="text-accent" />
                     </div>
-                    <h3 className="font-semibold text-foreground mb-2">Message sent!</h3>
-                    <p className="text-sm text-muted">We&apos;ll usually reply within a few hours.</p>
+                    <h3 className="font-semibold text-foreground mb-2">{t("form.success_title")}</h3>
+                    <p className="text-sm text-muted">{t("form.success_body")}</p>
                     <button
                       onClick={() => setStatus("idle")}
                       className="mt-6 text-sm text-accent font-semibold hover:underline"
                     >
-                      Send another message
+                      {t("form.submit")}
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">Name</label>
+                        <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">{t("form.name")}</label>
                         <input
                           type="text"
                           placeholder="Jane Smith"
@@ -164,7 +122,7 @@ export default function ContactContent() {
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">Email</label>
+                        <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">{t("form.email")}</label>
                         <input
                           type="email"
                           placeholder="jane@email.com"
@@ -177,26 +135,26 @@ export default function ContactContent() {
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">What can we help with?</label>
+                      <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">{t("form.property")}</label>
                       <select
                         value={form.propertyOfInterest}
                         onChange={(e) => setForm({ ...form, propertyOfInterest: e.target.value })}
                         className="w-full border border-border rounded-xl px-4 py-3 text-sm text-foreground bg-white focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer"
                       >
-                        <option value="">Select...</option>
-                        <option value="buying">Buying a home</option>
-                        <option value="selling">Selling my home</option>
-                        <option value="renting">Renting</option>
-                        <option value="valuation">Property valuation</option>
-                        <option value="other">Other</option>
+                        <option value="">...</option>
+                        <option value="buying">{t("form.option_buying")}</option>
+                        <option value="selling">{t("form.option_selling")}</option>
+                        <option value="renting">{t("form.option_renting")}</option>
+                        <option value="valuation">{t("form.option_valuation")}</option>
+                        <option value="other">{t("form.option_other")}</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">Message</label>
+                      <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">{t("form.message")}</label>
                       <textarea
                         rows={5}
-                        placeholder="Your message..."
+                        placeholder="..."
                         value={form.message}
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
                         required
@@ -209,16 +167,12 @@ export default function ContactContent() {
                       disabled={status === "sending"}
                       className="w-full bg-navy text-white font-semibold text-sm py-4 rounded-xl hover:bg-navy/90 active:scale-[0.99] transition-all disabled:opacity-60"
                     >
-                      {status === "sending" ? "Sending…" : "Send your message"}
+                      {t("form.submit")}
                     </button>
 
                     {status === "error" && (
-                      <p className="text-xs text-red-500 text-center">Something went wrong. Please try again.</p>
+                      <p className="text-xs text-red-500 text-center">{t("form.error")}</p>
                     )}
-
-                    <p className="text-xs text-muted text-center">
-                      We usually reply within a few hours. No bots — just real humans.
-                    </p>
                   </form>
                 )}
               </div>
@@ -232,17 +186,17 @@ export default function ContactContent() {
         <div className="container-site">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <FadeInUp>
-              <SectionLabel className="mb-3">FAQ</SectionLabel>
+              <SectionLabel className="mb-3">{t("faq_label")}</SectionLabel>
               <h2 className="font-display text-display-md text-foreground tracking-wider mb-4">
-                Quick answers before<br />you reach out
+                {t("faq_headline")}
               </h2>
               <p className="text-sm text-muted leading-relaxed max-w-sm">
-                Got something on your mind? Check below — or just send us a message, we&apos;ll take it from there.
+                {t("faq_subtitle")}
               </p>
             </FadeInUp>
 
             <div className="divide-y divide-border">
-              {FAQ.map((item, i) => (
+              {faq.map((item, i) => (
                 <div key={i}>
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -280,19 +234,19 @@ export default function ContactContent() {
         <div className="container-site">
           <FadeInUp className="text-center mb-12">
             <h2 className="font-display text-display-md text-foreground tracking-wider mb-3">
-              Still unsure? Here&apos;s what<br />our clients say.
+              {t("testimonials_headline")}
             </h2>
             <p className="text-sm text-muted">
-              Real words from people who reached out — and never looked back.
+              {t("testimonials_subtitle")}
             </p>
           </FadeInUp>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {TESTIMONIALS.map((item, i) => (
+            {testimonials.map((item, i) => (
               <FadeInUp key={item.name} delay={i * 0.08}>
                 <div className="bg-white rounded-2xl p-6 h-full flex flex-col">
                   <div className="flex gap-1 mb-4">
-                    {Array.from({ length: item.rating }).map((_, j) => (
+                    {Array.from({ length: 5 }).map((_, j) => (
                       <Star key={j} size={12} fill="#F07820" stroke="none" />
                     ))}
                   </div>
@@ -301,7 +255,7 @@ export default function ContactContent() {
                   </p>
                   <div className="flex items-center gap-3">
                     <Image
-                      src={item.image}
+                      src={TESTIMONIAL_IMAGES[i % TESTIMONIAL_IMAGES.length]}
                       alt={item.name}
                       width={36}
                       height={36}
