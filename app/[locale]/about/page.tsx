@@ -161,7 +161,7 @@ export default async function AboutPage({ params }: Props) {
             {missions.map((m: { title: string; body: string }, i: number) => (
               <FadeInUp key={m.title} delay={i * 0.1}>
                 <div className="border-l-2 border-accent pl-5">
-                  <h3 className="font-semibold text-white mb-2">{m.title}</h3>
+                  <h3 className="font-medium text-white mb-2">{m.title}</h3>
                   <p className="text-sm text-white/60 leading-relaxed">{m.body}</p>
                 </div>
               </FadeInUp>

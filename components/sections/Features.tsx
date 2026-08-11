@@ -17,7 +17,7 @@ function FeatureCard({ index, title, description }: FeatureItem & { index: numbe
       <p className="font-display text-4xl text-foreground tracking-wider mb-4 sm:mb-5">
         {String(index).padStart(2, "0")}
       </p>
-      <h3 className="font-sans font-semibold text-foreground mb-2">{title}</h3>
+      <h3 className="font-sans font-medium text-foreground mb-2">{title}</h3>
       <p className="text-sm text-muted leading-relaxed">{description}</p>
     </div>
   );

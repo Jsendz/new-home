@@ -27,7 +27,7 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">{t("links")}</p>
+            <p className="text-xs font-medium uppercase tracking-widest text-white/40 mb-4">{t("links")}</p>
             <ul className="space-y-2">
               {[
                 { href: localizedPath(locale), label: nav("home") },
@@ -47,7 +47,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">{t("contact")}</p>
+            <p className="text-xs font-medium uppercase tracking-widest text-white/40 mb-4">{t("contact")}</p>
             <ul className="space-y-2 text-sm text-white/60">
               <li>Avinguda Meritxell, 1</li>
               <li>AD500 Andorra la Vella, Andorra</li>
@@ -55,7 +55,7 @@ export default function Footer() {
               <li>info@thesweethomeco.ad</li>
             </ul>
 
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mt-6 mb-3">{t("socials")}</p>
+            <p className="text-xs font-medium uppercase tracking-widest text-white/40 mt-6 mb-3">{t("socials")}</p>
             <div className="flex gap-3">
               {[
                 { Icon: Facebook, href: "#" },

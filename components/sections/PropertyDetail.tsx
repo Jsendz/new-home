@@ -220,7 +220,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             {/* Title + price row */}
             <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
               <h1
-                className="font-display text-foreground tracking-wider leading-none"
+                className="font-display font-medium text-foreground tracking-wider leading-none"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)" }}
               >
                 {title}
@@ -256,7 +256,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
 
             {/* Description */}
             <div className="mb-8">
-              <h2 className="font-sans font-semibold text-base text-foreground mb-3">{t("overview")}</h2>
+              <h2 className="font-sans font-medium text-base text-foreground mb-3">{t("overview")}</h2>
               <p className="text-sm text-muted leading-relaxed">{desc}</p>
             </div>
 
@@ -271,7 +271,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
 
             {/* Gallery grid */}
             <div className="mb-10">
-              <h2 className="font-sans font-semibold text-base text-foreground mb-5">{t("gallery")}</h2>
+              <h2 className="font-sans font-medium text-base text-foreground mb-5">{t("gallery")}</h2>
               <div className="grid grid-cols-2 gap-3">
                 {galleryUrls.slice(0, 4).map((url, i) => (
                   <motion.div
@@ -294,7 +294,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
 
             {/* Location map placeholder */}
             <div>
-              <h2 className="font-sans font-semibold text-base text-foreground mb-5">{t("location_map_label")}</h2>
+              <h2 className="font-sans font-medium text-base text-foreground mb-5">{t("location_map_label")}</h2>
               <div className="w-full h-64 rounded-2xl overflow-hidden bg-card border border-border flex items-center justify-center">
                 <div className="text-center">
                   <MapPin size={28} className="text-accent mx-auto mb-2" strokeWidth={1.5} />
@@ -370,7 +370,7 @@ function Accordion({ label, children }: { label: string; children: React.ReactNo
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between py-4 text-left group"
       >
-        <span className={`font-sans font-semibold text-sm transition-colors ${open ? "text-accent" : "text-foreground group-hover:text-accent"}`}>
+        <span className={`font-sans font-medium text-sm transition-colors ${open ? "text-accent" : "text-foreground group-hover:text-accent"}`}>
           {label}
         </span>
         <motion.span

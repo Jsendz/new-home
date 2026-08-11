@@ -64,7 +64,7 @@ export default function Hero() {
         >
           <motion.p
             variants={fadeUp}
-            className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light mb-5"
+            className="text-[11px] font-medium uppercase tracking-[0.22em] text-accent-light mb-5"
           >
             {t("label")}
           </motion.p>

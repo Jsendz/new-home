@@ -27,14 +27,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Titles → Poppins */
+  /* Titles → Poppins. Section/property/card titles default to medium;
+     h1 (the hero/main headline of a page) steps up to semibold. */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-poppins);
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  h1, h2 {
-    font-weight: 700;
+  h1 {
+    font-weight: 600;
   }
 }
 
