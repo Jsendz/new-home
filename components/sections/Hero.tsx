@@ -43,7 +43,7 @@ export default function Hero() {
     <section className="relative bg-navy overflow-x-hidden">
 
       {/* ── Background image + headline ─────────────────────────────────── */}
-      <div className="relative min-h-[72svh] lg:min-h-[78svh] w-full overflow-hidden pt-[68px] flex flex-col">
+      <div className="relative min-h-[72svh] lg:min-h-[100svh] w-full overflow-hidden pt-[68px] flex flex-col">
         <Image
           src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=2000&q=90"
           alt="Luxury home exterior at dusk"
@@ -97,7 +97,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
-          className="-mt-14 md:-mt-9 bg-white rounded-2xl shadow-2xl border border-border/60 p-3 flex flex-col md:flex-row items-stretch md:items-center gap-1 md:gap-0"
+          className="-mt-14 md:-mt-28 bg-white rounded-2xl shadow-2xl border border-border/60 p-3 flex flex-col md:flex-row items-stretch md:items-center gap-1 md:gap-0"
         >
           {SEARCH_FIELDS.map(({ key, options }, i) => (
             <div key={key} className="contents">
