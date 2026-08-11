@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font faces are self-hosted via next/font/google (see app/layout.tsx),
-   which sets --font-bebas / --font-playfair / --font-inter on <html>. */
+/* Font faces are self-hosted via next/font/google (see app/[locale]/layout.tsx),
+   which sets --font-poppins / --font-playfair / --font-inter on <html>. */
 :root {
-  --font-bebas:    'Bebas Neue', sans-serif;
+  --font-poppins:  'Poppins', sans-serif;
   --font-playfair: 'Playfair Display', Georgia, serif;
   --font-inter:    'Inter', system-ui, sans-serif;
 }
@@ -27,17 +27,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Display headings (h1, h2) → Bebas Neue */
-  h1, h2 {
-    font-family: var(--font-bebas);
-    letter-spacing: 0.04em;
-    font-weight: 400; /* Bebas Neue only has one weight */
+  /* Titles → Poppins */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins);
+    font-weight: 600;
   }
 
-  /* Sub-headings → Inter semibold */
-  h3, h4, h5, h6 {
-    font-family: var(--font-inter);
-    font-weight: 600;
+  h1, h2 {
+    font-weight: 700;
   }
 }
 

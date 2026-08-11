@@ -22,7 +22,7 @@ const config: Config = {
         muted: "#64748B",
       },
       fontFamily: {
-        display: ["var(--font-bebas)", "'Bebas Neue'", "sans-serif"],
+        display: ["var(--font-poppins)", "Poppins", "sans-serif"],
         serif:   ["var(--font-playfair)", "Georgia", "serif"],
         sans:    ["var(--font-inter)", "system-ui", "sans-serif"],
       },

@@ -1,9 +1,9 @@
-import { Bebas_Neue, Playfair_Display, Inter } from "next/font/google";
+import { Poppins, Playfair_Display, Inter } from "next/font/google";
 
-export const bebasNeue = Bebas_Neue({
-  weight: "400",
+export const poppins = Poppins({
+  weight: ["500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-bebas",
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -22,4 +22,4 @@ export const inter = Inter({
   display: "swap",
 });
 
-export const fontVariables = `${bebasNeue.variable} ${playfairDisplay.variable} ${inter.variable}`;
+export const fontVariables = `${poppins.variable} ${playfairDisplay.variable} ${inter.variable}`;
