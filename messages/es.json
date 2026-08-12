@@ -33,11 +33,22 @@
     "headline": "Encuentra tu Hogar Perfecto en Andorra",
     "subheadline": "Te ayudamos a descubrir, evaluar y adquirir las mejores propiedades del país — con claridad, experiencia local y acompañamiento completo para residentes y no residentes.",
     "cta_primary": "Ver Propiedades",
-    "cta_secondary": "Habla con un Agente"
+    "cta_secondary": "Habla con un Agente",
+    "search": {
+      "buy": "Comprar",
+      "rent": "Alquilar",
+      "area_label": "Área",
+      "area_all": "Todas las áreas",
+      "price_label": "Rango de precio",
+      "cta": "Buscar"
+    }
   },
   "listings": {
     "title": "Propiedades Destacadas en Andorra",
     "subtitle": "Inmuebles seleccionados en las mejores ubicaciones del país.",
+    "page_label": "Explora Propiedades",
+    "page_title": "Encuentra tu Próximo Inmueble en Andorra",
+    "page_subtitle": "Explora nuestra colección completa de pisos, áticos y casas seleccionadas en todas las parroquias del país.",
     "view_all": "Ver Todas las Propiedades",
     "status": {
       "all": "Todas",
@@ -51,7 +62,19 @@
       "sqft": "m²",
       "price": "Precio"
     },
-    "view_property": "Ver Propiedad"
+    "view_property": "Ver Propiedad",
+    "filter_status": "Estado",
+    "filter_property_type": "Tipo de Propiedad",
+    "filter_location": "Ubicación",
+    "filter_price_range": "Rango de Precio",
+    "clear_filters": "Borrar Filtros",
+    "mobile_filters_button": "Filtros",
+    "sort_default": "Ordenar: Por Defecto",
+    "sort_price_asc": "Precio: de Menor a Mayor",
+    "sort_price_desc": "Precio: de Mayor a Menor",
+    "results_count_suffix": "propiedades",
+    "no_results_title": "No se encontraron propiedades",
+    "no_results_subtitle": "Intenta ajustar los filtros."
   },
   "features": {
     "label": "¿Por Qué Elegirnos?",

@@ -7,6 +7,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Search } from "lucide-react";
 import { localizedPath } from "@/lib/site";
+import { ANDORRA_PARISHES, PRICE_MIN, PRICE_MAX, PRICE_STEP } from "@/lib/andorra";
+import RangeSlider from "@/components/ui/RangeSlider";
+import { cn } from "@/lib/utils";
 
 // ── Animation config ────────────────────────────────────────────────────────
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -21,23 +24,32 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
-// ── Search bar field config ──────────────────────────────────────────────────
-const SEARCH_FIELDS = [
-  { key: "buy",  label: "Buy",  options: ["Buy", "Resale", "New Project"] },
-  { key: "rent", label: "Rent", options: ["Rent", "Short-term", "Long-term"] },
-  { key: "sell", label: "Sell", options: ["Sell", "List your Property", "Get a Valuation"] },
-] as const;
+function formatCompactPrice(value: number) {
+  if (value >= PRICE_MAX) return "€1.5M+";
+  if (value >= 1_000_000) return `€${(value / 1_000_000).toFixed(1)}M`;
+  if (value >= 1_000) return `€${Math.round(value / 1000)}k`;
+  return `€${value}`;
+}
 
 // ── Component ────────────────────────────────────────────────────────────────
 export default function Hero() {
   const t      = useTranslations("hero");
+  const tSearch = useTranslations("hero.search");
   const locale = useLocale();
 
-  const [selections, setSelections] = useState<Record<string, string>>({
-    buy: "Buy",
-    rent: "Rent",
-    sell: "Sell",
-  });
+  const [intent, setIntent]       = useState<"for_sale" | "rented">("for_sale");
+  const [area, setArea]           = useState<string>("all");
+  const [priceRange, setPriceRange] = useState<[number, number]>([PRICE_MIN, PRICE_MAX]);
+
+  const searchHref = () => {
+    const params = new URLSearchParams();
+    params.set("status", intent);
+    if (area !== "all") params.set("city", area);
+    if (priceRange[0] > PRICE_MIN) params.set("priceMin", String(priceRange[0]));
+    if (priceRange[1] < PRICE_MAX) params.set("priceMax", String(priceRange[1]));
+    const query = params.toString();
+    return `${localizedPath(locale, "/listings")}${query ? `?${query}` : ""}`;
+  };
 
   return (
     <section className="relative bg-navy overflow-x-hidden">
@@ -88,7 +100,7 @@ export default function Hero() {
         {/* Reserved space — matches the negative margin the search bar uses to
             overlap the image below, so the text above always centers relative
             to the same fixed line regardless of viewport height. */}
-        <div className="relative z-10 h-14 md:h-9 flex-shrink-0" aria-hidden />
+        <div className="relative z-10 h-24 md:h-9 flex-shrink-0" aria-hidden />
       </div>
 
       {/* ── Search bar — overlaps the bottom edge of the image ──────────── */}
@@ -97,42 +109,73 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
-          className="-mt-14 md:-mt-28 bg-white rounded-2xl shadow-2xl border border-border/60 p-3 flex flex-col md:flex-row items-stretch md:items-center gap-1 md:gap-0"
+          className="-mt-24 md:-mt-28 bg-white rounded-2xl shadow-2xl border border-border/60 p-4 flex flex-col md:flex-row items-stretch md:items-center gap-4 md:gap-0"
         >
-          {SEARCH_FIELDS.map(({ key, options }, i) => (
-            <div key={key} className="contents">
-              <div className="flex-1 relative px-5 py-3">
-                <select
-                  value={selections[key]}
-                  onChange={(e) =>
-                    setSelections((prev) => ({ ...prev, [key]: e.target.value }))
-                  }
-                  className="w-full appearance-none bg-transparent text-sm font-semibold text-foreground focus:outline-none cursor-pointer pr-6"
-                >
-                  {options.map((o) => (
-                    <option key={o} value={o}>{o}</option>
-                  ))}
-                </select>
-                <ChevronDown
-                  size={14}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
-                />
-              </div>
-              {i < SEARCH_FIELDS.length - 1 && (
-                <>
-                  <div className="md:hidden h-px w-full bg-border" />
-                  <div className="hidden md:block w-px bg-border self-stretch my-2" />
-                </>
-              )}
-            </div>
-          ))}
+          {/* Buy / Rent toggle */}
+          <div className="flex-shrink-0 flex items-center gap-1 bg-card rounded-xl p-1">
+            {(["for_sale", "rented"] as const).map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setIntent(key)}
+                className={cn(
+                  "px-5 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200",
+                  intent === key
+                    ? "bg-navy text-white"
+                    : "text-muted hover:text-foreground"
+                )}
+              >
+                {key === "for_sale" ? tSearch("buy") : tSearch("rent")}
+              </button>
+            ))}
+          </div>
+
+          <div className="hidden md:block w-px bg-border self-stretch my-2 mx-1" />
+
+          {/* Area dropdown */}
+          <div className="flex-1 relative px-4 py-2 md:py-0">
+            <label className="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">
+              {tSearch("area_label")}
+            </label>
+            <select
+              value={area}
+              onChange={(e) => setArea(e.target.value)}
+              className="w-full appearance-none bg-transparent text-sm font-medium text-foreground focus:outline-none cursor-pointer pr-6"
+            >
+              <option value="all">{tSearch("area_all")}</option>
+              {ANDORRA_PARISHES.map((parish) => (
+                <option key={parish} value={parish}>{parish}</option>
+              ))}
+            </select>
+            <ChevronDown
+              size={14}
+              className="absolute right-4 bottom-2.5 md:bottom-1 text-muted pointer-events-none"
+            />
+          </div>
+
+          <div className="hidden md:block w-px bg-border self-stretch my-2 mx-1" />
+
+          {/* Price range slider */}
+          <div className="flex-1 min-w-0 px-4 py-2 md:py-0">
+            <label className="block text-[10px] font-medium uppercase tracking-wider text-muted mb-2">
+              {tSearch("price_label")}
+            </label>
+            <RangeSlider
+              min={PRICE_MIN}
+              max={PRICE_MAX}
+              step={PRICE_STEP}
+              value={priceRange}
+              onChange={setPriceRange}
+              formatValue={formatCompactPrice}
+            />
+          </div>
 
           <Link
-            href={localizedPath(locale, "/listings")}
+            href={searchHref()}
             className="flex items-center justify-center gap-2 bg-navy hover:bg-foreground text-white text-sm font-semibold rounded-xl px-7 py-4 transition-colors duration-200 active:scale-95 mt-1 md:mt-0 md:ml-2 flex-shrink-0 w-full md:w-auto"
           >
             <Search size={15} />
-            Find Property
+            {tSearch("cta")}
           </Link>
         </motion.div>
       </div>

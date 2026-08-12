@@ -1,9 +1,9 @@
-import { Poppins, Playfair_Display, Inter } from "next/font/google";
+import { Montserrat, Playfair_Display, Inter } from "next/font/google";
 
-export const poppins = Poppins({
+export const montserrat = Montserrat({
   weight: ["500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -22,4 +22,4 @@ export const inter = Inter({
   display: "swap",
 });
 
-export const fontVariables = `${poppins.variable} ${playfairDisplay.variable} ${inter.variable}`;
+export const fontVariables = `${montserrat.variable} ${playfairDisplay.variable} ${inter.variable}`;

@@ -33,11 +33,22 @@
     "headline": "Find Your Perfect Home in Andorra",
     "subheadline": "We help you discover, evaluate, and acquire the finest properties in the country — with clarity, local expertise, and full support for residents and foreign buyers.",
     "cta_primary": "Explore Listings",
-    "cta_secondary": "Talk to an Agent"
+    "cta_secondary": "Talk to an Agent",
+    "search": {
+      "buy": "Buy",
+      "rent": "Rent",
+      "area_label": "Area",
+      "area_all": "All areas",
+      "price_label": "Price range",
+      "cta": "Search"
+    }
   },
   "listings": {
     "title": "Featured Properties in Andorra",
     "subtitle": "Handpicked properties in the country's best locations.",
+    "page_label": "Browse Properties",
+    "page_title": "Find Your Next Property in Andorra",
+    "page_subtitle": "Explore our full collection of handpicked apartments, penthouses, and houses across every parish in the country.",
     "view_all": "View All Listings",
     "status": {
       "all": "All",
@@ -51,7 +62,19 @@
       "sqft": "m²",
       "price": "Price"
     },
-    "view_property": "View Property"
+    "view_property": "View Property",
+    "filter_status": "Status",
+    "filter_property_type": "Property Type",
+    "filter_location": "Location",
+    "filter_price_range": "Price Range",
+    "clear_filters": "Clear Filters",
+    "mobile_filters_button": "Filters",
+    "sort_default": "Sort: Default",
+    "sort_price_asc": "Price: Low to High",
+    "sort_price_desc": "Price: High to Low",
+    "results_count_suffix": "properties",
+    "no_results_title": "No properties found",
+    "no_results_subtitle": "Try adjusting the filters."
   },
   "features": {
     "label": "Why Choose Us",

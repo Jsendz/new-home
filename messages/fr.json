@@ -33,11 +33,22 @@
     "headline": "Trouvez Votre Maison Idéale en Andorre",
     "subheadline": "Nous vous aidons à découvrir, évaluer et acquérir les meilleurs biens du pays — avec clarté, expertise locale et un accompagnement complet pour résidents et non-résidents.",
     "cta_primary": "Explorer les Propriétés",
-    "cta_secondary": "Parler à un Agent"
+    "cta_secondary": "Parler à un Agent",
+    "search": {
+      "buy": "Acheter",
+      "rent": "Louer",
+      "area_label": "Zone",
+      "area_all": "Toutes les zones",
+      "price_label": "Fourchette de prix",
+      "cta": "Rechercher"
+    }
   },
   "listings": {
     "title": "Propriétés en Vedette en Andorre",
     "subtitle": "Des biens sélectionnés dans les meilleurs emplacements du pays.",
+    "page_label": "Explorer les Propriétés",
+    "page_title": "Trouvez Votre Prochain Bien en Andorre",
+    "page_subtitle": "Découvrez notre collection complète d'appartements, penthouses et maisons sélectionnés dans toutes les paroisses du pays.",
     "view_all": "Voir Toutes les Propriétés",
     "status": {
       "all": "Toutes",
@@ -51,7 +62,19 @@
       "sqft": "m²",
       "price": "Prix"
     },
-    "view_property": "Voir la Propriété"
+    "view_property": "Voir la Propriété",
+    "filter_status": "Statut",
+    "filter_property_type": "Type de Bien",
+    "filter_location": "Emplacement",
+    "filter_price_range": "Fourchette de Prix",
+    "clear_filters": "Effacer les Filtres",
+    "mobile_filters_button": "Filtres",
+    "sort_default": "Trier : Par Défaut",
+    "sort_price_asc": "Prix : Croissant",
+    "sort_price_desc": "Prix : Décroissant",
+    "results_count_suffix": "propriétés",
+    "no_results_title": "Aucune propriété trouvée",
+    "no_results_subtitle": "Essayez d'ajuster les filtres."
   },
   "features": {
     "label": "Pourquoi Nous Choisir",

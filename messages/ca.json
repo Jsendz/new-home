@@ -33,11 +33,22 @@
     "headline": "Troba la teva llar perfecta a Andorra",
     "subheadline": "T'ajudem a descobrir, avaluar i adquirir les millors propietats del país — amb claredat, experiència local i acompanyament complet per a residents i no residents.",
     "cta_primary": "Explorar propietats",
-    "cta_secondary": "Parla amb un agent"
+    "cta_secondary": "Parla amb un agent",
+    "search": {
+      "buy": "Comprar",
+      "rent": "Llogar",
+      "area_label": "Àrea",
+      "area_all": "Totes les àrees",
+      "price_label": "Rang de preu",
+      "cta": "Cercar"
+    }
   },
   "listings": {
     "title": "Propietats destacades a Andorra",
     "subtitle": "Immobles seleccionats a les millors ubicacions del país.",
+    "page_label": "Explora propietats",
+    "page_title": "Troba el teu proper immoble a Andorra",
+    "page_subtitle": "Explora la nostra col·lecció completa de pisos, àtics i cases seleccionades a totes les parròquies del país.",
     "view_all": "Veure totes les propietats",
     "status": {
       "all": "Totes",
@@ -51,7 +62,19 @@
       "sqft": "m²",
       "price": "Preu"
     },
-    "view_property": "Veure propietat"
+    "view_property": "Veure propietat",
+    "filter_status": "Estat",
+    "filter_property_type": "Tipus de propietat",
+    "filter_location": "Ubicació",
+    "filter_price_range": "Rang de preu",
+    "clear_filters": "Esborrar filtres",
+    "mobile_filters_button": "Filtres",
+    "sort_default": "Ordenar: Per defecte",
+    "sort_price_asc": "Preu: de baix a alt",
+    "sort_price_desc": "Preu: d'alt a baix",
+    "results_count_suffix": "propietats",
+    "no_results_title": "No s'han trobat propietats",
+    "no_results_subtitle": "Prova d'ajustar els filtres."
   },
   "features": {
     "label": "Per què triar-nos",

@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { localizedPath } from "@/lib/site";
+import { ANDORRA_PARISHES, PRICE_MIN, PRICE_MAX, PRICE_STEP } from "@/lib/andorra";
 import {
   Bed, Bath, Maximize2, MapPin, ArrowRight,
   SlidersHorizontal, Check, X, ChevronDown,
@@ -14,6 +16,7 @@ import { urlForImage } from "@/lib/sanity";
 import { formatPrice } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
 import FadeInUp from "@/components/ui/FadeInUp";
+import RangeSlider from "@/components/ui/RangeSlider";
 import { cn } from "@/lib/utils";
 
 // ── Types & demo data (imported + re-exported from shared lib) ────────────
@@ -26,18 +29,14 @@ type StatusFilter = "all" | "for_sale" | "sold" | "rented";
 type SortOption   = "default" | "price_asc" | "price_desc";
 
 const PROPERTY_TYPES = ["Apartment", "Villa", "House", "Condo", "Townhouse"];
-const CITIES = [
-  "Andorra la Vella", "Escaldes-Engordany", "Encamp",
-  "La Massana", "Ordino", "Sant Julià de Lòria", "Canillo",
-];
+const CITIES: readonly string[] = ANDORRA_PARISHES;
 
-interface PriceRange { label: string; min: number; max: number }
-const PRICE_RANGES: PriceRange[] = [
-  { label: "Under €400k",      min: 0,       max: 400000   },
-  { label: "€400k – €700k",    min: 400000,  max: 700000   },
-  { label: "€700k – €1.2M",    min: 700000,  max: 1200000  },
-  { label: "€1.2M+",           min: 1200000, max: Infinity  },
-];
+function formatCompactPrice(value: number) {
+  if (value >= PRICE_MAX) return "€1.5M+";
+  if (value >= 1_000_000) return `€${(value / 1_000_000).toFixed(1)}M`;
+  if (value >= 1_000) return `€${Math.round(value / 1000)}k`;
+  return `€${value}`;
+}
 
 // ── Main component ─────────────────────────────────────────────────────────
 interface ListingsGridProps {
@@ -49,6 +48,8 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
   const locale = useLocale();
   const items  = properties?.length ? properties : DEMO_LISTINGS;
 
+  const searchParams = useSearchParams();
+
   const statusOptions: { key: StatusFilter; label: string }[] = [
     { key: "all",      label: t("status.all") },
     { key: "for_sale", label: t("status.for_sale") },
@@ -56,12 +57,34 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
     { key: "rented",   label: t("status.rented") },
   ];
 
+  // Plain (non-lazy) defaults here — the listings page is statically
+  // generated, so the server has no knowledge of the request's query
+  // string. Seeding initial state directly from searchParams would make
+  // the client's first render diverge from the static HTML and crash
+  // hydration. Instead we render the same unfiltered default on both,
+  // then apply the URL-driven filters in an effect right after mount.
   const [status,       setStatus]       = useState<StatusFilter>("all");
   const [sort,         setSort]         = useState<SortOption>("default");
   const [typeFilters,  setTypeFilters]  = useState<Set<string>>(new Set());
   const [cityFilters,  setCityFilters]  = useState<Set<string>>(new Set());
-  const [priceFilters, setPriceFilters] = useState<Set<string>>(new Set());
+  const [priceRange,   setPriceRange]   = useState<[number, number]>([PRICE_MIN, PRICE_MAX]);
   const [sidebarOpen,  setSidebarOpen]  = useState(false);
+
+  useEffect(() => {
+    const s = searchParams.get("status");
+    if (s === "for_sale" || s === "sold" || s === "rented") setStatus(s);
+
+    const city = searchParams.get("city");
+    if (city && (CITIES as string[]).includes(city)) setCityFilters(new Set([city]));
+
+    const min = Number(searchParams.get("priceMin"));
+    const max = Number(searchParams.get("priceMax"));
+    const nextMin = Number.isFinite(min) && min > PRICE_MIN ? min : PRICE_MIN;
+    const nextMax = Number.isFinite(max) && max > PRICE_MIN && max <= PRICE_MAX ? max : PRICE_MAX;
+    if (nextMin !== PRICE_MIN || nextMax !== PRICE_MAX) setPriceRange([nextMin, nextMax]);
+    // Only ever seed from the URL once, right after mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const toggleSet = useCallback(<T,>(prev: Set<T>, item: T): Set<T> => {
     const next = new Set(prev);
@@ -69,17 +92,19 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
     return next;
   }, []);
 
+  const priceActive = priceRange[0] > PRICE_MIN || priceRange[1] < PRICE_MAX;
+
   const hasActiveFilters =
-    status !== "all" || typeFilters.size > 0 || cityFilters.size > 0 || priceFilters.size > 0;
+    status !== "all" || typeFilters.size > 0 || cityFilters.size > 0 || priceActive;
 
   const activeCount =
-    (status !== "all" ? 1 : 0) + typeFilters.size + cityFilters.size + priceFilters.size;
+    (status !== "all" ? 1 : 0) + typeFilters.size + cityFilters.size + (priceActive ? 1 : 0);
 
   const clearAll = useCallback(() => {
     setStatus("all");
     setTypeFilters(new Set());
     setCityFilters(new Set());
-    setPriceFilters(new Set());
+    setPriceRange([PRICE_MIN, PRICE_MAX]);
   }, []);
 
   const filtered = useMemo(() => {
@@ -89,23 +114,20 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
       out = out.filter((p) => p.propertyType && typeFilters.has(p.propertyType));
     if (cityFilters.size > 0)
       out = out.filter((p) => cityFilters.has(p.location.split(", ").pop() ?? ""));
-    if (priceFilters.size > 0)
-      out = out.filter((p) =>
-        PRICE_RANGES.some((r) => priceFilters.has(r.label) && p.price >= r.min && p.price < r.max)
-      );
+    out = out.filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1]);
     if (sort === "price_asc")  out.sort((a, b) => a.price - b.price);
     if (sort === "price_desc") out.sort((a, b) => b.price - a.price);
     return out;
-  }, [items, status, sort, typeFilters, cityFilters, priceFilters]);
+  }, [items, status, sort, typeFilters, cityFilters, priceRange]);
 
-  const filterKey = `${status}-${sort}-${[...typeFilters]}-${[...cityFilters]}-${[...priceFilters]}`;
+  const filterKey = `${status}-${sort}-${[...typeFilters]}-${[...cityFilters]}-${priceRange[0]}-${priceRange[1]}`;
 
   // Shared sidebar content (rendered for both desktop & mobile)
   const sidebarContent = (
     <div className="space-y-6">
       {/* Status */}
       <div>
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted mb-3">Status</p>
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted mb-3">{t("filter_status")}</p>
         <div className="space-y-1">
           {statusOptions.map(({ key, label }) => (
             <button
@@ -127,7 +149,7 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
       <div className="h-px bg-border" />
 
       {/* Property Type */}
-      <FilterSection title="Property Type">
+      <FilterSection title={t("filter_property_type")}>
         {PROPERTY_TYPES.map((type) => (
           <FilterCheckbox
             key={type}
@@ -141,7 +163,7 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
       <div className="h-px bg-border" />
 
       {/* Location */}
-      <FilterSection title="Location">
+      <FilterSection title={t("filter_location")}>
         {CITIES.map((city) => (
           <FilterCheckbox
             key={city}
@@ -155,15 +177,15 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
       <div className="h-px bg-border" />
 
       {/* Price Range */}
-      <FilterSection title="Price Range">
-        {PRICE_RANGES.map((range) => (
-          <FilterCheckbox
-            key={range.label}
-            label={range.label}
-            checked={priceFilters.has(range.label)}
-            onChange={() => setPriceFilters((p) => toggleSet(p, range.label))}
-          />
-        ))}
+      <FilterSection title={t("filter_price_range")}>
+        <RangeSlider
+          min={PRICE_MIN}
+          max={PRICE_MAX}
+          step={PRICE_STEP}
+          value={priceRange}
+          onChange={setPriceRange}
+          formatValue={formatCompactPrice}
+        />
       </FilterSection>
 
       {/* Clear all */}
@@ -173,7 +195,7 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
           className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold text-muted hover:text-foreground border border-border rounded-full py-2 transition-colors hover:border-foreground/30"
         >
           <X size={11} strokeWidth={2.5} />
-          Clear Filters
+          {t("clear_filters")}
         </button>
       )}
     </div>
@@ -202,7 +224,7 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
               className="lg:hidden inline-flex items-center gap-2 text-sm font-semibold bg-card px-4 py-2 rounded-full"
             >
               <SlidersHorizontal size={13} strokeWidth={2} />
-              Filters
+              {t("mobile_filters_button")}
               {activeCount > 0 && (
                 <span className="bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                   {activeCount}
@@ -217,7 +239,7 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
             {/* Count + sort */}
             <div className="flex items-center gap-4 ml-auto">
               <span className="text-sm text-muted">
-                <span className="font-semibold text-foreground">{filtered.length}</span> properties
+                <span className="font-semibold text-foreground">{filtered.length}</span> {t("results_count_suffix")}
               </span>
               <div className="flex items-center gap-2 text-sm text-muted">
                 <SlidersHorizontal size={13} strokeWidth={2} />
@@ -226,9 +248,9 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
                   onChange={(e) => setSort(e.target.value as SortOption)}
                   className="bg-transparent text-sm text-muted focus:text-foreground outline-none cursor-pointer"
                 >
-                  <option value="default">Sort: Default</option>
-                  <option value="price_asc">Price: Low → High</option>
-                  <option value="price_desc">Price: High → Low</option>
+                  <option value="default">{t("sort_default")}</option>
+                  <option value="price_asc">{t("sort_price_asc")}</option>
+                  <option value="price_desc">{t("sort_price_desc")}</option>
                 </select>
               </div>
             </div>
@@ -276,8 +298,8 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
 
         {filtered.length === 0 && (
           <FadeInUp className="py-24 text-center">
-            <p className="font-display text-2xl text-foreground mb-2 tracking-wider">No properties found</p>
-            <p className="text-sm text-muted">Try adjusting the filters.</p>
+            <p className="font-display text-2xl text-foreground mb-2 tracking-wider">{t("no_results_title")}</p>
+            <p className="text-sm text-muted">{t("no_results_subtitle")}</p>
           </FadeInUp>
         )}
       </div>

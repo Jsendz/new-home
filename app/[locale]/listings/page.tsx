@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { sanityClient, PROPERTIES_QUERY } from "@/lib/sanity";
@@ -31,6 +32,7 @@ export default async function ListingsPage({ params }: Props) {
   setRequestLocale(locale);
 
   const tNav = await getTranslations({ locale, namespace: "nav" });
+  const t = await getTranslations({ locale, namespace: "listings" });
 
   let properties = [];
 
@@ -50,13 +52,15 @@ export default async function ListingsPage({ params }: Props) {
       />
       <PageTransition>
         <PageHeader
-          label="Browse Properties"
-          title="Find Your Perfect Home"
-          subtitle="Explore our full collection of handpicked properties across the region."
+          label={t("page_label")}
+          title={t("page_title")}
+          subtitle={t("page_subtitle")}
         />
         <section className="section-padding bg-background">
           <div className="container-site">
-            <ListingsGrid properties={properties} />
+            <Suspense fallback={null}>
+              <ListingsGrid properties={properties} />
+            </Suspense>
           </div>
         </section>
       </PageTransition>
