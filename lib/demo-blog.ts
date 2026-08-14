@@ -15,6 +15,12 @@ export interface BlogPost {
   mainImage?: string;
   author?: { name: string; role?: string; photo?: string };
   body?: string[];
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: { asset: { _ref: string } };
+    noIndex?: boolean;
+  };
 }
 
 export const DEMO_POSTS: BlogPost[] = [

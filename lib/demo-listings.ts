@@ -1,6 +1,23 @@
 // Shared demo data — no "use client" so it can be imported by both
 // server components (page.tsx) and client components (ListingsGrid.tsx)
 
+import type { Translations } from "@/lib/utils";
+
+export interface PropertyAddress {
+  addressLocality?: string;
+  addressRegion?: string;
+  postalCode?: string;
+  addressCountry?: string;
+  geo?: { lat?: number; lng?: number };
+}
+
+export interface PropertySeo {
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: { asset: { _ref: string } };
+  noIndex?: boolean;
+}
+
 export interface ListingProperty {
   _id: string;
   title: string;
@@ -8,12 +25,16 @@ export interface ListingProperty {
   price: number;
   bedrooms: number;
   bathrooms: number;
-  sqft: number;
+  sqft: number | null;
   location: string;
+  address?: PropertyAddress;
+  description?: string;
   status: "for_sale" | "sold" | "rented";
   propertyType?: string;
-  mainImage?: { asset: { _ref: string } };
+  mainImage?: { asset: { _ref: string }; alt?: string };
   image?: string;
+  seo?: PropertySeo;
+  translations?: Translations;
 }
 
 export const DEMO_LISTINGS: ListingProperty[] = [

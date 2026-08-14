@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import { formatPrice, localizedField } from "@/lib/utils";
+import { formatPrice, localizedField, localizedSlug, type Translations } from "@/lib/utils";
 import { localizedPath } from "@/lib/site";
 import { urlForImage } from "@/lib/sanity";
 import Badge from "./Badge";
@@ -17,15 +17,12 @@ export interface PropertyCardData {
   price: number;
   bedrooms: number;
   bathrooms: number;
-  sqft: number;
+  sqft: number | null;
   location: string;
   status: "for_sale" | "sold" | "rented";
-  mainImage?: { asset: { _ref: string } };
+  mainImage?: { asset: { _ref: string }; alt?: string };
   image?: string;
-  translations?: {
-    title_es?: string; title_fr?: string; title_ca?: string;
-    description_es?: string; description_fr?: string; description_ca?: string;
-  };
+  translations?: Translations;
 }
 
 interface PropertyCardProps {
@@ -38,6 +35,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
   const locale = useLocale();
 
   const title = localizedField(property.title, "title", locale, property.translations);
+  const slug = localizedSlug(property.slug.current, locale, property.translations);
 
   const imageUrl =
     property.mainImage
@@ -61,7 +59,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
     >
-      <Link href={localizedPath(locale, `/listings/${property.slug.current}`)} className="block">
+      <Link href={localizedPath(locale, `/listings/${slug}`)} className="block">
         {/* Image */}
         <div className="relative overflow-hidden aspect-[4/3]">
           <motion.div
@@ -71,7 +69,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
           >
             <Image
               src={imageUrl}
-              alt={title}
+              alt={property.mainImage?.alt || title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -109,7 +107,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
             </span>
             <span className="flex items-center gap-1.5">
               <Maximize2 size={13} strokeWidth={2} />
-              {property.sqft.toLocaleString("en-US")} {t("details.sqft")}
+              {property.sqft != null ? property.sqft.toLocaleString("en-US") : "—"} {t("details.sqft")}
             </span>
           </div>
 

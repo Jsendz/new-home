@@ -61,6 +61,89 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
   };
 }
 
+interface PropertyAddress {
+  addressLocality?: string;
+  addressRegion?: string;
+  postalCode?: string;
+  addressCountry?: string;
+  geo?: { lat?: number; lng?: number };
+}
+
+/** Maps the Sanity `propertyType` list to a schema.org residence subtype. */
+function residenceType(propertyType?: string) {
+  switch (propertyType) {
+    case "Condo":
+    case "Apartment":
+      return "Apartment";
+    case "Land":
+      return "Place";
+    default:
+      return "SingleFamilyResidence";
+  }
+}
+
+export function realEstateListingSchema({
+  name,
+  description,
+  url,
+  image,
+  price,
+  status,
+  propertyType,
+  bedrooms,
+  bathrooms,
+  floorSizeSqm,
+  address,
+}: {
+  name: string;
+  description?: string;
+  url: string;
+  image?: string;
+  price: number;
+  status: "for_sale" | "sold" | "rented";
+  propertyType?: string;
+  bedrooms?: number;
+  bathrooms?: number;
+  floorSizeSqm?: number | null;
+  address?: PropertyAddress;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    name,
+    ...(description && { description }),
+    url,
+    ...(image && { image: [image] }),
+    about: {
+      "@type": residenceType(propertyType),
+      name,
+      ...(address && {
+        address: {
+          "@type": "PostalAddress",
+          ...(address.addressLocality && { addressLocality: address.addressLocality }),
+          ...(address.addressRegion && { addressRegion: address.addressRegion }),
+          ...(address.postalCode && { postalCode: address.postalCode }),
+          addressCountry: address.addressCountry || "AD",
+        },
+      }),
+      ...(address?.geo?.lat != null && address?.geo?.lng != null && {
+        geo: { "@type": "GeoCoordinates", latitude: address.geo.lat, longitude: address.geo.lng },
+      }),
+      ...(bedrooms != null && { numberOfRooms: bedrooms }),
+      ...(bathrooms != null && { numberOfBathroomsTotal: bathrooms }),
+      ...(floorSizeSqm != null && {
+        floorSize: { "@type": "QuantitativeValue", value: floorSizeSqm, unitCode: "MTK" },
+      }),
+    },
+    offers: {
+      "@type": "Offer",
+      price,
+      priceCurrency: "EUR",
+      availability: status === "for_sale" ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    },
+  };
+}
+
 export function articleSchema({
   title,
   description,

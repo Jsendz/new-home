@@ -41,9 +41,15 @@ interface SanityBlogPost {
   publishedAt: string;
   excerpt: string;
   readTime: number;
-  mainImage?: { asset: { _ref: string } };
+  mainImage?: { asset: { _ref: string }; alt?: string };
   body?: PortableTextBlock[];
   author?: { name: string; role?: string; photo?: { asset: { _ref: string } } };
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: { asset: { _ref: string } };
+    noIndex?: boolean;
+  };
 }
 
 async function getPost(slug: string): Promise<SanityBlogPost | BlogPost | null> {
@@ -64,6 +70,13 @@ function resolveImage(post: SanityBlogPost | BlogPost, width: number, height?: n
   return typeof post.mainImage === "string" ? post.mainImage : undefined;
 }
 
+function resolveImageAlt(post: SanityBlogPost | BlogPost) {
+  if ("mainImage" in post && post.mainImage && typeof post.mainImage !== "string") {
+    return (post.mainImage as { alt?: string }).alt || post.title;
+  }
+  return post.title;
+}
+
 function resolveAuthorPhoto(post: SanityBlogPost | BlogPost) {
   const author = post.author as SanityBlogPost["author"] | BlogPost["author"];
   if (!author?.photo) return undefined;
@@ -78,12 +91,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) return { title: "Article Not Found" };
 
+  const seo = post.seo;
+  const image = seo?.ogImage
+    ? urlForImage(seo.ogImage).width(1200).height(630).url()
+    : resolveImage(post, 1200, 630);
+
   return buildMetadata({
     locale,
     path: `/blog/${slug}`,
-    title: `${post.title} | The Sweet Home Co.`,
-    description: post.excerpt,
-    image: resolveImage(post, 1200, 630),
+    title: seo?.metaTitle || `${post.title} | The Sweet Home Co.`,
+    description: seo?.metaDescription || post.excerpt,
+    image,
+    noIndex: seo?.noIndex,
   });
 }
 
@@ -169,7 +188,7 @@ export default async function BlogPostPage({ params }: Props) {
                   <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-12">
                     <Image
                       src={imageUrl}
-                      alt={post.title}
+                      alt={resolveImageAlt(post)}
                       fill
                       className="object-cover"
                       priority

@@ -10,6 +10,12 @@ interface BuildMetadataArgs {
   title: string;
   description: string;
   image?: string;
+  /** Keep this specific page out of search engines (e.g. sold/rented listings, manual override). */
+  noIndex?: boolean;
+  /** Per-locale path overrides for hreflang, for pages whose slug differs by
+   *  locale (e.g. a translated property slug). Falls back to `path` for any
+   *  locale not present in the map. */
+  localizedPaths?: Partial<Record<string, string>>;
 }
 
 /** Builds title, description, canonical, hreflang, and OG/Twitter tags for
@@ -21,18 +27,24 @@ export function buildMetadata({
   title,
   description,
   image,
+  noIndex,
+  localizedPaths,
 }: BuildMetadataArgs): Metadata {
   const url = localizedUrl(locale, path);
   const languages = Object.fromEntries(
-    routing.locales.map((l) => [l, localizedUrl(l, path)])
+    routing.locales.map((l) => [l, localizedUrl(l, localizedPaths?.[l] ?? path)])
   );
 
   return {
     title,
     description,
+    ...(noIndex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: url,
-      languages: { ...languages, "x-default": localizedUrl(routing.defaultLocale, path) },
+      languages: {
+        ...languages,
+        "x-default": localizedUrl(routing.defaultLocale, localizedPaths?.[routing.defaultLocale] ?? path),
+      },
     },
     openGraph: {
       title,

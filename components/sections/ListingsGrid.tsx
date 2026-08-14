@@ -13,11 +13,10 @@ import {
   SlidersHorizontal, Check, X, ChevronDown,
 } from "lucide-react";
 import { urlForImage } from "@/lib/sanity";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, localizedField, localizedSlug, cn } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
 import FadeInUp from "@/components/ui/FadeInUp";
 import RangeSlider from "@/components/ui/RangeSlider";
-import { cn } from "@/lib/utils";
 
 // ── Types & demo data (imported + re-exported from shared lib) ────────────
 import { DEMO_LISTINGS, type ListingProperty } from "@/lib/demo-listings";
@@ -365,6 +364,9 @@ function MasonryCard({
       ? urlForImage(property.mainImage).width(900).url()
       : property.image ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80";
 
+  const title = localizedField(property.title, "title", locale, property.translations);
+  const slug = localizedSlug(property.slug.current, locale, property.translations);
+
   const statusVariant =
     property.status === "sold"   ? "sold" :
     property.status === "rented" ? "rented" : "accent";
@@ -377,7 +379,7 @@ function MasonryCard({
       transition={{ duration: 0.6, delay: (index % 3) * 0.07, ease: [0.22, 1, 0.36, 1] }}
       className="flex flex-col"
     >
-      <Link href={localizedPath(locale, `/listings/${property.slug.current}`)} className="group block">
+      <Link href={localizedPath(locale, `/listings/${slug}`)} className="group block">
         <article className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-400">
 
           {/* Image */}
@@ -389,7 +391,7 @@ function MasonryCard({
             >
               <Image
                 src={imageUrl}
-                alt={property.title}
+                alt={property.mainImage?.alt || title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover"
@@ -433,12 +435,12 @@ function MasonryCard({
               {property.location}
             </p>
             <h3 className="font-serif text-[1.0625rem] font-medium text-foreground leading-snug mb-3 group-hover:text-accent transition-colors line-clamp-1">
-              {property.title}
+              {title}
             </h3>
             <div className="flex items-center gap-2 flex-wrap">
               <StatBadge icon={<Bed size={11} strokeWidth={2} />}      value={property.bedrooms}              label={t("details.beds")} />
               <StatBadge icon={<Bath size={11} strokeWidth={2} />}     value={property.bathrooms}             label={t("details.baths")} />
-              <StatBadge icon={<Maximize2 size={11} strokeWidth={2} />} value={property.sqft.toLocaleString("en-US")} label={t("details.sqft")} />
+              <StatBadge icon={<Maximize2 size={11} strokeWidth={2} />} value={property.sqft != null ? property.sqft.toLocaleString("en-US") : "—"} label={t("details.sqft")} />
             </div>
           </div>
 

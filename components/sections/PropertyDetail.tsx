@@ -19,12 +19,8 @@ import PropertyCard from "@/components/ui/PropertyCard";
 export interface PropertyFull extends ListingProperty {
   description?: string;
   amenities?: string[];
-  gallery?: Array<{ asset: { _ref: string } } | string>;
+  gallery?: Array<{ asset: { _ref: string }; alt?: string } | string>;
   parking?: number;
-  translations?: {
-    title_es?: string; title_fr?: string; title_ca?: string;
-    description_es?: string; description_fr?: string; description_ca?: string;
-  };
 }
 
 // ── Demo fill for missing Sanity data ──────────────────────────────────────
@@ -56,7 +52,7 @@ function getAccordionSections(t: ReturnType<typeof useTranslations>) {
             [t("status_label"), p.status.replace("_", " ")],
             [t("beds_label"),   p.bedrooms],
             [t("baths_label"),  p.bathrooms],
-            [t("sqft_label"),   `${p.sqft.toLocaleString("en-US")} m²`],
+            [t("sqft_label"),   p.sqft != null ? `${p.sqft.toLocaleString("en-US")} m²` : "—"],
             [t("parking_label"), p.parking ?? 1],
           ].map(([k, v]) => (
             <div key={String(k)}>
@@ -117,11 +113,15 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
       ? g
       : urlForImage(g as { asset: { _ref: string } }).width(900).url()
   );
+  const galleryAlts = galleryRaw.map((g) =>
+    typeof g === "string" ? undefined : g.alt
+  );
 
   const mainImageUrl =
     property.mainImage
       ? urlForImage(property.mainImage).width(1200).height(700).url()
       : property.image ?? "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=85";
+  const mainImageAlt = property.mainImage?.alt || title;
 
   const similarProperties = DEMO_LISTINGS
     .filter((p) => p._id !== property._id && p.status === "for_sale")
@@ -151,7 +151,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
           >
             <Image
               src={mainImageUrl}
-              alt={title}
+              alt={mainImageAlt}
               fill
               priority
               sizes="(max-width: 1280px) 65vw, 840px"
@@ -164,7 +164,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             {galleryUrls[0] && (
               <Image
                 src={galleryUrls[0]}
-                alt={`${title} — interior`}
+                alt={galleryAlts[0] || `${title} — interior`}
                 fill
                 sizes="(max-width: 1280px) 35vw, 420px"
                 className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
@@ -177,7 +177,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             {galleryUrls[1] && (
               <Image
                 src={galleryUrls[1]}
-                alt={`${title} — interior`}
+                alt={galleryAlts[1] || `${title} — interior`}
                 fill
                 sizes="(max-width: 1280px) 35vw, 420px"
                 className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
@@ -236,7 +236,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             {/* Stats row */}
             <div className="flex flex-wrap items-center gap-3 mb-8">
               {[
-                { icon: Maximize2, label: t("sqft_label"),  value: `${property.sqft.toLocaleString("en-US")} m²` },
+                { icon: Maximize2, label: t("sqft_label"),  value: property.sqft != null ? `${property.sqft.toLocaleString("en-US")} m²` : "—" },
                 { icon: Bed,       label: t("beds_label"),  value: property.bedrooms },
                 { icon: Bath,      label: t("baths_label"), value: property.bathrooms },
                 { icon: Home,      label: t("type_label"),  value: property.propertyType ?? "—" },
@@ -282,7 +282,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
                   >
                     <Image
                       src={url}
-                      alt={`${title} — ${t("gallery").toLowerCase()} ${i + 1}`}
+                      alt={galleryAlts[i] || `${title} — ${t("gallery").toLowerCase()} ${i + 1}`}
                       fill
                       sizes="(max-width: 1024px) 50vw, 400px"
                       className="object-cover group-hover:scale-[1.06] transition-transform duration-500"
