@@ -316,20 +316,13 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
                 <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-card">
                   <Image
                     src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80"
-                    alt="Agent"
+                    alt="Niccola Sendzul"
                     width={48} height={48}
                     className="object-cover w-full h-full"
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-sm text-foreground">Emily Carter</p>
-                  <div className="flex items-center gap-1 mt-0.5">
-                    {[1,2,3,4].map((s) => (
-                      <Star key={s} size={11} fill="#F07820" stroke="none" />
-                    ))}
-                    <Star size={11} fill="#E2E8F0" stroke="none" />
-                    <span className="text-[11px] text-muted ml-1">4 stars</span>
-                  </div>
+                  <p className="font-semibold text-sm text-foreground">Niccola Sendzul</p>
                 </div>
               </div>
 
@@ -425,7 +418,7 @@ function ContactForm() {
           <Star size={18} fill="#F07820" stroke="none" />
         </div>
         <p className="font-semibold text-foreground text-sm mb-1">Message sent!</p>
-        <p className="text-xs text-muted">Emily will be in touch within 24 hours.</p>
+        <p className="text-xs text-muted">Niccola will be in touch within 24 hours.</p>
       </div>
     );
   }
