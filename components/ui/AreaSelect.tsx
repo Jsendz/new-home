@@ -64,11 +64,11 @@ export default function AreaSelect({ areas, value, onChange, allLabel, areaLabel
         {open && (
           <motion.ul
             role="listbox"
-            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+            initial={{ opacity: 0, y: 6, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-0 right-0 md:right-auto top-full mt-3 md:w-72 bg-white rounded-xl shadow-2xl border border-border/60 py-2 z-30 origin-top max-h-80 overflow-y-auto"
+            className="absolute left-0 right-0 md:right-auto bottom-full mb-3 md:w-72 bg-white rounded-xl shadow-2xl border border-border/60 py-2 z-30 origin-bottom max-h-80 overflow-y-auto"
           >
             <li role="none">
               <button
