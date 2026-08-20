@@ -5,10 +5,11 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { localizedPath } from "@/lib/site";
 import { ANDORRA_PARISHES, PRICE_MIN, PRICE_MAX, PRICE_STEP } from "@/lib/andorra";
 import RangeSlider from "@/components/ui/RangeSlider";
+import AreaSelect from "@/components/ui/AreaSelect";
 import { cn } from "@/lib/utils";
 
 // ── Animation config ────────────────────────────────────────────────────────
@@ -133,25 +134,13 @@ export default function Hero() {
           <div className="hidden md:block w-px bg-border self-stretch my-2 mx-1" />
 
           {/* Area dropdown */}
-          <div className="flex-1 relative px-4 py-2 md:py-0">
-            <label className="block text-[10px] font-medium uppercase tracking-wider text-muted mb-0.5">
-              {tSearch("area_label")}
-            </label>
-            <select
-              value={area}
-              onChange={(e) => setArea(e.target.value)}
-              className="w-full appearance-none bg-transparent text-sm font-medium text-foreground focus:outline-none cursor-pointer pr-6"
-            >
-              <option value="all">{tSearch("area_all")}</option>
-              {ANDORRA_PARISHES.map((parish) => (
-                <option key={parish} value={parish}>{parish}</option>
-              ))}
-            </select>
-            <ChevronDown
-              size={14}
-              className="absolute right-4 bottom-2.5 md:bottom-1 text-muted pointer-events-none"
-            />
-          </div>
+          <AreaSelect
+            areas={ANDORRA_PARISHES}
+            value={area}
+            onChange={setArea}
+            allLabel={tSearch("area_all")}
+            areaLabel={tSearch("area_label")}
+          />
 
           <div className="hidden md:block w-px bg-border self-stretch my-2 mx-1" />
 
