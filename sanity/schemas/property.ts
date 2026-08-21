@@ -77,6 +77,14 @@ export const property = defineType({
     }),
     defineField({ name: "location", title: "Location / Address (display)", type: "string", description: "Shown to visitors, e.g. \"Avinguda Meritxell, Andorra la Vella\"" }),
     defineField({
+      name: "area", title: "Area (Parish)", type: "string",
+      description: "Used to match this property against the area filter on the search bar and listings page — must be one of the 7 parishes.",
+      options: {
+        list: ["Andorra la Vella", "Escaldes-Engordany", "Encamp", "La Massana", "Ordino", "Sant Julià de Lòria", "Canillo"],
+      },
+      validation: (r) => r.required(),
+    }),
+    defineField({
       name: "address",
       title: "Structured Address",
       type: "object",

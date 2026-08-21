@@ -15,11 +15,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-3">
-              <svg viewBox="0 0 70 82" className="h-8 w-auto text-accent flex-shrink-0" fill="currentColor" aria-hidden>
-                <path d="M4,14 L40,14 L40,7 L53,7 L53,0 L61,0 L61,8 L52,8 L48,14 L48,22 L4,22 Z"/>
-                <path d="M48,22 L58,22 L22,64 L12,64 Z"/>
-                <path d="M12,64 L66,64 L66,75 L46,75 L46,82 L30,82 L30,75 L12,75 Z"/>
-              </svg>
+              <img src="/logo.svg" alt="" className="h-9 w-9 rounded-lg flex-shrink-0" aria-hidden />
               <p className="font-display text-2xl tracking-widest uppercase text-white">The Sweet Home Co.</p>
             </div>
             <p className="text-sm text-white/60 max-w-xs leading-relaxed">{t("tagline")}</p>

@@ -22,12 +22,12 @@ const SEO_FIELDS = `seo { metaTitle, metaDescription, ogImage, noIndex }`;
 
 export const PROPERTIES_QUERY = `*[_type == "property" && defined(slug.current)] | order(_createdAt desc) {
   _id, title, slug, price, bedrooms, bathrooms, sqft,
-  description, mainImage, location, status, featured, propertyType, ${PROPERTY_TRANSLATION_FIELDS}
+  description, mainImage, location, area, status, featured, propertyType, ${PROPERTY_TRANSLATION_FIELDS}
 }`;
 
 export const FEATURED_PROPERTIES_QUERY = `*[_type == "property" && featured == true && defined(slug.current)] | order(_createdAt desc)[0...6] {
   _id, title, slug, price, bedrooms, bathrooms, sqft,
-  description, mainImage, location, status, featured, propertyType, ${PROPERTY_TRANSLATION_FIELDS}
+  description, mainImage, location, area, status, featured, propertyType, ${PROPERTY_TRANSLATION_FIELDS}
 }`;
 
 // Matches the requested slug against the English slug or any translated
@@ -41,7 +41,7 @@ export const PROPERTY_BY_SLUG_QUERY = `*[_type == "property" && (
   translations.slug_ca.current == $slug
 )][0] {
   _id, title, slug, price, bedrooms, bathrooms, sqft,
-  description, mainImage, gallery, location, address, status, featured, amenities, propertyType, parking,
+  description, mainImage, gallery, location, area, address, status, featured, amenities, propertyType, parking,
   ${PROPERTY_TRANSLATION_FIELDS}, ${SEO_FIELDS}
 }`;
 

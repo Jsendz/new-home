@@ -112,7 +112,7 @@ export default function ListingsGrid({ properties }: ListingsGridProps) {
     if (typeFilters.size > 0)
       out = out.filter((p) => p.propertyType && typeFilters.has(p.propertyType));
     if (cityFilters.size > 0)
-      out = out.filter((p) => cityFilters.has(p.location.split(", ").pop() ?? ""));
+      out = out.filter((p) => cityFilters.has(p.area || p.location?.split(", ").pop() || ""));
     out = out.filter((p) => p.price >= priceRange[0] && p.price <= priceRange[1]);
     if (sort === "price_asc")  out.sort((a, b) => a.price - b.price);
     if (sort === "price_desc") out.sort((a, b) => b.price - a.price);
