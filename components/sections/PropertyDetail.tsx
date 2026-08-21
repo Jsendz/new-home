@@ -14,6 +14,7 @@ import { localizedPath } from "@/lib/site";
 import { urlForImage } from "@/lib/sanity";
 import { DEMO_LISTINGS, type ListingProperty } from "@/lib/demo-listings";
 import PropertyCard from "@/components/ui/PropertyCard";
+import ImageLightbox from "@/components/ui/ImageLightbox";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 export interface PropertyFull extends ListingProperty {
@@ -124,6 +125,12 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
       : property.image ?? "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=85";
   const mainImageAlt = property.mainImage?.alt || title;
 
+  const allImages = [
+    { url: mainImageUrl, alt: mainImageAlt },
+    ...galleryUrls.map((url, i) => ({ url, alt: galleryAlts[i] || `${title} — interior` })),
+  ];
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
   const similarProperties = DEMO_LISTINGS
     .filter((p) => p._id !== property._id && p.status === "for_sale")
     .slice(0, 3);
@@ -149,6 +156,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             className="col-span-2 row-span-2 relative overflow-hidden group cursor-pointer"
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.4 }}
+            onClick={() => setLightboxIndex(0)}
           >
             <Image
               src={mainImageUrl}
@@ -161,7 +169,10 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
           </motion.div>
 
           {/* Top-right image */}
-          <div className="relative overflow-hidden group cursor-pointer">
+          <div
+            className="relative overflow-hidden group cursor-pointer"
+            onClick={() => galleryUrls[0] && setLightboxIndex(1)}
+          >
             {galleryUrls[0] && (
               <Image
                 src={galleryUrls[0]}
@@ -174,7 +185,10 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
           </div>
 
           {/* Bottom-right image */}
-          <div className="relative overflow-hidden group cursor-pointer">
+          <div
+            className="relative overflow-hidden group cursor-pointer"
+            onClick={() => galleryUrls[1] && setLightboxIndex(2)}
+          >
             {galleryUrls[1] && (
               <Image
                 src={galleryUrls[1]}
@@ -186,7 +200,11 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
             )}
             {/* Show all photos pill */}
             <div className="absolute bottom-3 right-3">
-              <button className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-white transition-colors shadow-sm">
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex(0); }}
+                className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-white transition-colors shadow-sm"
+              >
                 <Images size={12} />
                 {t("show_all_photos")}
               </button>
@@ -280,6 +298,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
                     className="relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
+                    onClick={() => setLightboxIndex(i + 1)}
                   >
                     <Image
                       src={url}
@@ -351,6 +370,14 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
           </div>
         </div>
       )}
+
+      <ImageLightbox
+        images={allImages}
+        index={lightboxIndex ?? 0}
+        open={lightboxIndex !== null}
+        onClose={() => setLightboxIndex(null)}
+        onIndexChange={setLightboxIndex}
+      />
     </div>
   );
 }
