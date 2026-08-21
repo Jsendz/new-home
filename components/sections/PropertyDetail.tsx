@@ -104,9 +104,10 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
     locale,
     property.translations
   ) || DEMO_FULL.description!;
-  const galleryRaw = property.gallery?.length
+  const galleryRaw = (property.gallery?.length
     ? property.gallery
-    : (DEMO_FULL.gallery as string[]);
+    : (DEMO_FULL.gallery as string[])
+  ).filter((g) => typeof g === "string" || g.asset?._ref);
 
   const galleryUrls = galleryRaw.map((g) =>
     typeof g === "string"
