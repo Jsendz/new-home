@@ -19,7 +19,7 @@ const TESTIMONIAL_IMAGES = [
 export default function ContactContent() {
   const t = useTranslations("contact");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [form, setForm]       = useState({ fullName: "", email: "", propertyOfInterest: "", message: "" });
+  const [form, setForm]       = useState({ fullName: "", email: "", propertyTitle: "", message: "" });
   const [status, setStatus]   = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const faq = t.raw("faq") as { q: string; a: string }[];
@@ -35,7 +35,7 @@ export default function ContactContent() {
         body: JSON.stringify(form),
       });
       setStatus(res.ok ? "sent" : "error");
-      if (res.ok) setForm({ fullName: "", email: "", propertyOfInterest: "", message: "" });
+      if (res.ok) setForm({ fullName: "", email: "", propertyTitle: "", message: "" });
     } catch {
       setStatus("error");
     }
@@ -137,8 +137,8 @@ export default function ContactContent() {
                     <div>
                       <label className="text-[10px] font-semibold text-muted uppercase tracking-[0.12em] block mb-1.5">{t("form.property")}</label>
                       <select
-                        value={form.propertyOfInterest}
-                        onChange={(e) => setForm({ ...form, propertyOfInterest: e.target.value })}
+                        value={form.propertyTitle}
+                        onChange={(e) => setForm({ ...form, propertyTitle: e.target.value })}
                         className="w-full border border-border rounded-xl px-4 py-3 text-sm text-foreground bg-white focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer"
                       >
                         <option value="">...</option>

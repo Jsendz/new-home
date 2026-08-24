@@ -9,8 +9,8 @@ import {
   Star, ArrowLeft, Share2, Heart, Images,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { formatPrice, localizedField } from "@/lib/utils";
-import { localizedPath } from "@/lib/site";
+import { formatPrice, localizedField, localizedSlug } from "@/lib/utils";
+import { localizedPath, localizedUrl } from "@/lib/site";
 import { urlForImage } from "@/lib/sanity";
 import { DEMO_LISTINGS, type ListingProperty } from "@/lib/demo-listings";
 import PropertyCard from "@/components/ui/PropertyCard";
@@ -134,6 +134,11 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
   const similarProperties = DEMO_LISTINGS
     .filter((p) => p._id !== property._id && p.status === "for_sale")
     .slice(0, 3);
+
+  const propertyUrl = localizedUrl(
+    locale,
+    `/listings/${localizedSlug(property.slug.current, locale, property.translations)}`
+  );
 
   return (
     <div className="bg-background pt-[68px]">
@@ -347,7 +352,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
               </div>
 
               {/* Contact form */}
-              <ContactForm />
+              <ContactForm propertyTitle={title} propertyUrl={propertyUrl} />
             </div>
 
           </div>
@@ -420,8 +425,8 @@ function Accordion({ label, children }: { label: string; children: React.ReactNo
 }
 
 // ── Contact form ───────────────────────────────────────────────────────────
-function ContactForm() {
-  const [form, setForm]   = useState({ name: "", email: "", message: "" });
+function ContactForm({ propertyTitle, propertyUrl }: { propertyTitle: string; propertyUrl: string }) {
+  const [form, setForm]   = useState({ name: "", email: "", phone: "", message: "" });
   const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -431,7 +436,14 @@ function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName: form.name, email: form.email, message: form.message }),
+        body: JSON.stringify({
+          fullName: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+          propertyTitle,
+          propertyUrl,
+        }),
       });
       setState(res.ok ? "success" : "error");
     } catch {
@@ -476,6 +488,18 @@ function ContactForm() {
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           required
+          className="w-full text-sm border border-border rounded-lg px-3 py-2.5 bg-background placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition"
+        />
+      </div>
+      <div>
+        <label className="block text-[11px] font-semibold text-muted uppercase tracking-wider mb-1.5">
+          Phone Number
+        </label>
+        <input
+          type="tel"
+          placeholder="+376 000 000"
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
           className="w-full text-sm border border-border rounded-lg px-3 py-2.5 bg-background placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition"
         />
       </div>
