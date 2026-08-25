@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,7 +9,7 @@ import {
   Star, ArrowLeft, Share2, Heart, Images,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { formatPrice, localizedField, localizedSlug } from "@/lib/utils";
+import { formatPrice, localizedField, localizedSlug, cn } from "@/lib/utils";
 import { localizedPath, localizedUrl } from "@/lib/site";
 import { urlForImage } from "@/lib/sanity";
 import { DEMO_LISTINGS, type ListingProperty } from "@/lib/demo-listings";
@@ -131,6 +131,14 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
   ];
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const handleMobileScroll = () => {
+    const el = mobileScrollRef.current;
+    if (!el) return;
+    setMobileSlide(Math.min(Math.round(el.scrollLeft / el.clientWidth), allImages.length - 1));
+  };
+
   const similarProperties = DEMO_LISTINGS
     .filter((p) => p._id !== property._id && p.status === "for_sale")
     .slice(0, 3);
@@ -154,8 +162,55 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
           {t("back_to_listings")}
         </Link>
 
-        {/* Gallery grid */}
-        <div className="grid grid-cols-3 grid-rows-2 gap-2.5 h-[480px] rounded-2xl overflow-hidden">
+        {/* Mobile image carousel */}
+        <div className="md:hidden">
+          <div
+            ref={mobileScrollRef}
+            onScroll={handleMobileScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory rounded-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          >
+            {allImages.map((img, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setLightboxIndex(i)}
+                className="relative w-full flex-shrink-0 snap-center aspect-[4/3]"
+                aria-label={`View image ${i + 1} of ${allImages.length}`}
+              >
+                <Image
+                  src={img.url}
+                  alt={img.alt || title}
+                  fill
+                  priority={i === 0}
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </button>
+            ))}
+          </div>
+
+          {allImages.length > 1 && (
+            <div className="flex items-center justify-center gap-2.5 mt-3">
+              <div className="flex gap-1.5">
+                {allImages.map((_, i) => (
+                  <span
+                    key={i}
+                    className={cn(
+                      "h-1.5 rounded-full transition-all duration-200",
+                      i === mobileSlide ? "w-4 bg-navy" : "w-1.5 bg-border"
+                    )}
+                  />
+                ))}
+              </div>
+              <span className="text-xs text-muted tabular-nums">
+                {mobileSlide + 1} / {allImages.length}
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Desktop gallery grid */}
+        <div className="hidden md:grid grid-cols-3 grid-rows-2 gap-2.5 h-[480px] rounded-2xl overflow-hidden">
           {/* Main image — spans full height on left */}
           <motion.div
             className="col-span-2 row-span-2 relative overflow-hidden group cursor-pointer"
