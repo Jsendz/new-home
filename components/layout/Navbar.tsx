@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X, ChevronDown, Check } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { localizedPath } from "@/lib/site";
 import { usePathname } from "next/navigation";
@@ -113,9 +113,8 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* ── Mobile right: locale + hamburger ── */}
+          {/* ── Mobile right: hamburger ── */}
           <div className="lg:hidden flex items-center gap-3 ml-auto">
-            <LocaleSwitcher locale={locale} compact />
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
@@ -230,17 +229,7 @@ export default function Navbar() {
 }
 
 // ── Locale switcher ────────────────────────────────────────────────────────
-function LocaleSwitcher({
-  locale,
-  compact = false,
-}: {
-  locale: string;
-  compact?: boolean;
-}) {
-  if (compact) {
-    return <CompactLocaleDropdown locale={locale} />;
-  }
-
+function LocaleSwitcher({ locale }: { locale: string }) {
   return (
     <div className="flex items-center gap-0.5 rounded-full p-0.5 bg-card">
       {LOCALES.map(({ code, label }) => (
@@ -257,78 +246,6 @@ function LocaleSwitcher({
           {label}
         </Link>
       ))}
-    </div>
-  );
-}
-
-// ── Compact locale dropdown (mobile navbar) ─────────────────────────────────
-function CompactLocaleDropdown({ locale }: { locale: string }) {
-  const [open, setOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
-
-  useEffect(() => {
-    if (!open) return;
-
-    const handlePointer = (e: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);
-    };
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("mousedown", handlePointer);
-    document.addEventListener("keydown", handleKey);
-    return () => {
-      document.removeEventListener("mousedown", handlePointer);
-      document.removeEventListener("keydown", handleKey);
-    };
-  }, [open]);
-
-  return (
-    <div ref={rootRef} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        aria-label="Change language"
-        className="flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1.5 rounded-full border border-border text-foreground hover:border-foreground/30 transition-colors"
-      >
-        {current.label}
-        <ChevronDown size={12} className={cn("transition-transform duration-200", open && "rotate-180")} />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.ul
-            role="listbox"
-            initial={{ opacity: 0, y: -6, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.98 }}
-            transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 top-full mt-2 w-32 bg-white rounded-xl shadow-2xl border border-border/60 py-1.5 z-30 origin-top-right"
-          >
-            {LOCALES.map(({ code, label }) => (
-              <li role="none" key={code}>
-                <Link
-                  href={localizedPath(code)}
-                  onClick={() => setOpen(false)}
-                  role="option"
-                  aria-selected={locale === code}
-                  className={cn(
-                    "flex items-center justify-between gap-2 px-3.5 py-2 text-sm transition-colors",
-                    locale === code ? "text-navy font-semibold bg-card" : "text-foreground hover:bg-card"
-                  )}
-                >
-                  {label}
-                  {locale === code && <Check size={14} className="text-accent flex-shrink-0" />}
-                </Link>
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
