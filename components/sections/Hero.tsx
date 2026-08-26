@@ -11,6 +11,17 @@ import { ANDORRA_PARISHES, PRICE_MIN, PRICE_MAX, PRICE_STEP } from "@/lib/andorr
 import RangeSlider from "@/components/ui/RangeSlider";
 import AreaSelect from "@/components/ui/AreaSelect";
 import { cn } from "@/lib/utils";
+import { urlForImage } from "@/lib/sanity";
+
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=2000&q=90";
+
+interface HeroSectionData {
+  mainImage?: { asset: { _ref: string }; alt?: string };
+}
+
+interface HeroProps {
+  hero?: HeroSectionData | null;
+}
 
 // ── Animation config ────────────────────────────────────────────────────────
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -33,10 +44,15 @@ function formatCompactPrice(value: number) {
 }
 
 // ── Component ────────────────────────────────────────────────────────────────
-export default function Hero() {
+export default function Hero({ hero }: HeroProps) {
   const t      = useTranslations("hero");
   const tSearch = useTranslations("hero.search");
   const locale = useLocale();
+
+  const imageUrl = hero?.mainImage
+    ? urlForImage(hero.mainImage).width(2000).url()
+    : FALLBACK_IMAGE;
+  const imageAlt = hero?.mainImage?.alt || "Luxury home exterior at dusk";
 
   const [intent, setIntent]       = useState<"for_sale" | "rented">("for_sale");
   const [area, setArea]           = useState<string>("all");
@@ -58,8 +74,8 @@ export default function Hero() {
       {/* ── Background image + headline ─────────────────────────────────── */}
       <div className="relative min-h-[72svh] lg:min-h-[100svh] w-full overflow-hidden pt-[68px] flex flex-col">
         <Image
-          src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=2000&q=90"
-          alt="Luxury home exterior at dusk"
+          src={imageUrl}
+          alt={imageAlt}
           fill
           priority
           sizes="100vw"

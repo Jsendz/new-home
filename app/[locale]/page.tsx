@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { sanityClient, FEATURED_PROPERTIES_QUERY, BLOG_POSTS_QUERY, TESTIMONIALS_QUERY } from "@/lib/sanity";
+import { sanityClient, FEATURED_PROPERTIES_QUERY, BLOG_POSTS_QUERY, TESTIMONIALS_QUERY, HERO_SECTION_QUERY } from "@/lib/sanity";
 import { buildMetadata } from "@/lib/metadata";
 import Hero from "@/components/sections/Hero";
 import FeaturedListings from "@/components/sections/FeaturedListings";
@@ -37,12 +37,14 @@ export default async function HomePage({ params }: Props) {
   let properties = [];
   let posts = [];
   let testimonials = [];
+  let hero = null;
 
   try {
-    [properties, posts, testimonials] = await Promise.all([
+    [properties, posts, testimonials, hero] = await Promise.all([
       sanityClient.fetch(FEATURED_PROPERTIES_QUERY),
       sanityClient.fetch(BLOG_POSTS_QUERY),
       sanityClient.fetch(TESTIMONIALS_QUERY),
+      sanityClient.fetch(HERO_SECTION_QUERY),
     ]);
   } catch {
     // Sanity not configured yet — sections render with demo data
@@ -50,7 +52,7 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <PageTransition>
-      <Hero />
+      <Hero hero={hero} />
       <FeaturedListings properties={properties} />
       <Features />
       <Testimonials testimonials={testimonials} />

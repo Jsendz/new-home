@@ -72,8 +72,7 @@ export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
 }`;
 
 export const HERO_SECTION_QUERY = `*[_type == "heroSection"][0] {
-  mainImage, secondaryImage, badgeText, clientCount,
-  stats[]{ value, label }
+  mainImage
 }`;
 
 export const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
