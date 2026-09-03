@@ -11,7 +11,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { formatPrice, localizedField, localizedSlug, cn } from "@/lib/utils";
 import { localizedPath, localizedUrl } from "@/lib/site";
-import { urlForImage } from "@/lib/sanity";
+import { urlForImage, watermarkUrl } from "@/lib/sanity";
 import { DEMO_LISTINGS, type ListingProperty } from "@/lib/demo-listings";
 import PropertyCard from "@/components/ui/PropertyCard";
 import ImageLightbox from "@/components/ui/ImageLightbox";
@@ -113,7 +113,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
   const galleryUrls = galleryRaw.map((g) =>
     typeof g === "string"
       ? g
-      : urlForImage(g as { asset: { _ref: string } }).width(900).url()
+      : watermarkUrl(urlForImage(g as { asset: { _ref: string } }).width(900).url())
   );
   const galleryAlts = galleryRaw.map((g) =>
     typeof g === "string" ? undefined : g.alt
@@ -121,7 +121,7 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
 
   const mainImageUrl =
     property.mainImage
-      ? urlForImage(property.mainImage).width(1200).height(700).url()
+      ? watermarkUrl(urlForImage(property.mainImage).width(1200).height(700).url())
       : property.image ?? "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=85";
   const mainImageAlt = property.mainImage?.alt || title;
 

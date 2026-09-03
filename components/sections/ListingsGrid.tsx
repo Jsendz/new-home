@@ -12,7 +12,7 @@ import {
   Bed, Bath, Maximize2, MapPin, ArrowRight,
   SlidersHorizontal, Check, X, ChevronDown,
 } from "lucide-react";
-import { urlForImage } from "@/lib/sanity";
+import { urlForImage, watermarkUrl } from "@/lib/sanity";
 import { formatPrice, localizedField, localizedSlug, cn } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
 import FadeInUp from "@/components/ui/FadeInUp";
@@ -361,7 +361,7 @@ function MasonryCard({
 }) {
   const imageUrl =
     property.mainImage
-      ? urlForImage(property.mainImage).width(900).url()
+      ? watermarkUrl(urlForImage(property.mainImage).width(900).url())
       : property.image ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80";
 
   const title = localizedField(property.title, "title", locale, property.translations);

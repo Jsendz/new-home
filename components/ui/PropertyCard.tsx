@@ -7,7 +7,7 @@ import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { formatPrice, localizedField, localizedSlug, type Translations } from "@/lib/utils";
 import { localizedPath } from "@/lib/site";
-import { urlForImage } from "@/lib/sanity";
+import { urlForImage, watermarkUrl } from "@/lib/sanity";
 import Badge from "./Badge";
 
 export interface PropertyCardData {
@@ -39,7 +39,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
 
   const imageUrl =
     property.mainImage
-      ? urlForImage(property.mainImage).width(800).height(540).url()
+      ? watermarkUrl(urlForImage(property.mainImage).width(800).height(540).url())
       : property.image ?? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80";
 
   const statusVariant =

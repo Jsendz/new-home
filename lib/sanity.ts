@@ -16,6 +16,14 @@ export function urlForImage(source: SanityImageSource) {
   return builder.image(source);
 }
 
+// Routes a Sanity image URL through /api/watermark, which bakes the brand
+// mark into the actual image bytes — use this (instead of the raw
+// urlForImage(...).url()) anywhere a property's listing photos are shown
+// publicly, so they can't be lifted clean via right-click-save.
+export function watermarkUrl(sanityImageUrl: string): string {
+  return `/api/watermark?src=${encodeURIComponent(sanityImageUrl)}`;
+}
+
 // Queries
 const PROPERTY_TRANSLATION_FIELDS = `translations { title_es, title_fr, title_ca, slug_es, slug_fr, slug_ca, description_es, description_fr, description_ca }`;
 const SEO_FIELDS = `seo { metaTitle, metaDescription, ogImage, noIndex }`;
