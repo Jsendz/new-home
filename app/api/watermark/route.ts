@@ -8,43 +8,41 @@ const ALLOWED_HOST = "cdn.sanity.io";
 
 export const revalidate = false;
 
-const WATERMARK_TEXT = "THE SWEET HOME CO.";
-// SVG doesn't measure text for us — sharp renders via librsvg, no DOM/canvas
-// available — so the plate is sized from an estimated glyph width for
-// Arial Bold uppercase rather than a fixed fraction of the image width.
-const CHAR_WIDTH_EM = 0.62;
+// Fetched over HTTP (not read from disk) because files under /public
+// aren't guaranteed to be present in the serverless function's own
+// filesystem on Vercel — they're deployed as static assets instead.
+// Cached per warm instance so repeat requests don't re-fetch it.
+let cachedLogoSvg: string | null = null;
 
-function buildWatermarkSvg(width: number) {
-  let fontSize = Math.max(10, Math.round(width * 0.016));
-  const iconArea = fontSize * 2.3;
-  const rightPad = fontSize * 0.9;
+async function getLogoSvgText(request: Request): Promise<string> {
+  if (cachedLogoSvg) return cachedLogoSvg;
+  const logoUrl = new URL("/logo.svg", request.url);
+  const res = await fetch(logoUrl);
+  if (!res.ok) throw new Error(`Failed to fetch logo.svg (${res.status})`);
+  cachedLogoSvg = await res.text();
+  return cachedLogoSvg;
+}
 
-  let plateWidth = Math.round(iconArea + WATERMARK_TEXT.length * fontSize * CHAR_WIDTH_EM + rightPad);
+const LOGO_OPACITY = 0.75;
 
-  // Keep the badge from dominating narrow/small source images.
-  const maxPlateWidth = width * 0.45;
-  if (plateWidth > maxPlateWidth) {
-    const scale = maxPlateWidth / plateWidth;
-    fontSize = Math.max(8, Math.round(fontSize * scale));
-    plateWidth = Math.round(maxPlateWidth);
-  }
+async function buildLogoWatermark(request: Request, imageWidth: number) {
+  const svgText = await getLogoSvgText(request);
+  // logo.svg has no built-in transparency, so wrap its contents in a
+  // semi-opaque group before rasterizing — that bakes the fade into the
+  // resulting PNG's alpha channel, which composite() then respects.
+  const withOpacity = svgText
+    .replace(/(<svg[^>]*>)/, `$1<g opacity="${LOGO_OPACITY}">`)
+    .replace(/(<\/svg>)/, `</g>$1`);
 
-  const plateHeight = Math.round(fontSize * 2.6);
-  const padding = Math.round(width * 0.025);
-  const dotRadius = fontSize * 0.5;
-  const dotCx = fontSize * 1.15;
-  const textX = fontSize * 2.3;
-  const textY = plateHeight / 2 + fontSize * 0.35;
+  const markSize = Math.max(24, Math.round(imageWidth * 0.11));
+  const padding = Math.round(imageWidth * 0.025);
 
-  const svg = `
-    <svg width="${plateWidth}" height="${plateHeight}" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="${plateWidth}" height="${plateHeight}" rx="${plateHeight / 2}" fill="#0C2D52" fill-opacity="0.55"/>
-      <circle cx="${dotCx}" cy="${plateHeight / 2}" r="${dotRadius}" fill="#F07820"/>
-      <text x="${textX}" y="${textY}" font-family="Arial, Helvetica, sans-serif" font-size="${fontSize}" font-weight="600" letter-spacing="0.5" fill="#FFFFFF">${WATERMARK_TEXT}</text>
-    </svg>
-  `;
+  const buffer = await sharp(Buffer.from(withOpacity), { density: 300 })
+    .resize(markSize, markSize)
+    .png()
+    .toBuffer();
 
-  return { svg, plateWidth, plateHeight, padding };
+  return { buffer, markSize, padding };
 }
 
 export async function GET(request: Request) {
@@ -78,15 +76,14 @@ export async function GET(request: Request) {
     const width = metadata.width ?? 900;
     const height = metadata.height ?? 600;
 
-    const { svg, plateWidth, plateHeight, padding } = buildWatermarkSvg(width);
-    const markBuffer = Buffer.from(svg);
+    const { buffer: markBuffer, markSize, padding } = await buildLogoWatermark(request, width);
 
     const watermarked = await image
       .composite([
         {
           input: markBuffer,
-          top: Math.max(0, height - plateHeight - padding),
-          left: Math.max(0, width - plateWidth - padding),
+          top: Math.max(0, height - markSize - padding),
+          left: Math.max(0, width - markSize - padding),
         },
       ])
       .webp({ quality: 82 })
