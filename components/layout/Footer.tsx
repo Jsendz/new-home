@@ -2,11 +2,13 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { localizedPath } from "@/lib/site";
+import { getLegalContent } from "@/lib/legal-content";
 
 export default function Footer() {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
   const locale = useLocale();
+  const legal = getLegalContent(locale);
 
   return (
     <footer className="bg-navy text-white">
@@ -77,6 +79,9 @@ export default function Footer() {
             <Link href={localizedPath(locale, "/about")} className="hover:text-white/60 transition-colors">{nav("about")}</Link>
             <Link href={localizedPath(locale, "/listings")} className="hover:text-white/60 transition-colors">{nav("listings")}</Link>
             <Link href={localizedPath(locale, "/contact")} className="hover:text-white/60 transition-colors">{nav("contact")}</Link>
+            <Link href={localizedPath(locale, "/legal-notice")} className="hover:text-white/60 transition-colors">{legal.legal_notice.title}</Link>
+            <Link href={localizedPath(locale, "/privacy-policy")} className="hover:text-white/60 transition-colors">{legal.privacy_policy.title}</Link>
+            <Link href={localizedPath(locale, "/cookie-policy")} className="hover:text-white/60 transition-colors">{legal.cookie_policy.title}</Link>
           </div>
         </div>
       </div>

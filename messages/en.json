@@ -272,6 +272,9 @@
     "socials": "Follow Us",
     "rights": "All rights reserved."
   },
+  "legal": {
+    "placeholders_label": "Needs review before publishing"
+  },
   "property": {
     "overview": "Overview",
     "amenities": "Amenities",

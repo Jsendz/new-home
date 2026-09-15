@@ -272,6 +272,9 @@
     "socials": "Suivez-nous",
     "rights": "Tous droits réservés."
   },
+  "legal": {
+    "placeholders_label": "À revoir avant publication"
+  },
   "property": {
     "overview": "Aperçu",
     "amenities": "Équipements",

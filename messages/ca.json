@@ -272,6 +272,9 @@
     "socials": "Segueix-nos",
     "rights": "Tots els drets reservats."
   },
+  "legal": {
+    "placeholders_label": "Cal revisar abans de publicar"
+  },
   "property": {
     "overview": "Resum",
     "amenities": "Serveis",

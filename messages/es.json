@@ -272,6 +272,9 @@
     "socials": "Síguenos",
     "rights": "Todos los derechos reservados."
   },
+  "legal": {
+    "placeholders_label": "Necesita revisión antes de publicar"
+  },
   "property": {
     "overview": "Resumen",
     "amenities": "Comodidades",
