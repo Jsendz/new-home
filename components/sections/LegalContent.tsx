@@ -14,8 +14,14 @@ export default function LegalContent({ document, placeholdersLabel }: LegalConte
         <FadeInUp>
           <p className="text-xs text-muted mb-10">{document.updated}</p>
 
-          {document.intro && (
-            <p className="text-sm text-muted leading-relaxed mb-10">{document.intro}</p>
+          {document.intro && document.intro.length > 0 && (
+            <div className="space-y-3 mb-10">
+              {document.intro.map((p, i) => (
+                <p key={i} className="text-sm text-muted leading-relaxed">
+                  {p}
+                </p>
+              ))}
+            </div>
           )}
 
           <div className="space-y-10">
@@ -41,6 +47,42 @@ export default function LegalContent({ document, placeholdersLabel }: LegalConte
                     ))}
                   </ul>
                 )}
+
+                {sec.table && (
+                  <div className="mt-4 overflow-x-auto rounded-xl border border-border">
+                    <table className="w-full text-sm border-collapse min-w-[560px]">
+                      <thead>
+                        <tr className="bg-card">
+                          {sec.table.columns.map((col) => (
+                            <th
+                              key={col}
+                              className="text-left font-semibold text-foreground px-4 py-2.5 border-b border-border"
+                            >
+                              {col}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sec.table.rows.map((row, i) => (
+                          <tr key={i} className="border-b border-border last:border-0">
+                            {row.map((cell, j) => (
+                              <td key={j} className="align-top text-muted leading-relaxed px-4 py-3">
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+
+                {sec.afterList?.map((p, i) => (
+                  <p key={i} className="text-sm text-muted leading-relaxed mt-3">
+                    {p}
+                  </p>
+                ))}
 
                 {sec.subsections && (
                   <div className="space-y-5 mt-4">
