@@ -289,6 +289,7 @@
     "status_label": "Estat",
     "back_to_listings": "Tornar a propietats",
     "show_all_photos": "Veure totes les fotos",
+    "download_pdf": "Descarregar PDF",
     "listing_price_label": "Preu de venda",
     "location_surroundings_label": "Ubicació i entorn",
     "location_note": "Situat a {location}, aquest immoble es troba en una de les zones més sol·licitades del país. A prop de comerços, restaurants i accés a les pistes d'esquí.",

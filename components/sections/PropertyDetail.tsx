@@ -6,13 +6,13 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin, Bed, Bath, Maximize2, Home, ChevronDown,
-  Star, ArrowLeft, Share2, Heart, Images,
+  Star, ArrowLeft, Share2, Heart, Images, Download,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { formatPrice, localizedField, localizedSlug, cn } from "@/lib/utils";
 import { localizedPath, localizedUrl } from "@/lib/site";
 import { urlForImage, watermarkUrl } from "@/lib/sanity";
-import { DEMO_LISTINGS, type ListingProperty } from "@/lib/demo-listings";
+import { DEMO_LISTINGS, DEMO_DESCRIPTION, type ListingProperty } from "@/lib/demo-listings";
 import PropertyCard from "@/components/ui/PropertyCard";
 import ImageLightbox from "@/components/ui/ImageLightbox";
 
@@ -26,8 +26,7 @@ export interface PropertyFull extends ListingProperty {
 
 // ── Demo fill for missing Sanity data ──────────────────────────────────────
 const DEMO_FULL: Partial<PropertyFull> = {
-  description:
-    "A bright, mountain-inspired home offering modern interiors, spacious living areas, and elegant finishes throughout. Ideal for buyers seeking comfort, style, and a well-located property close to Andorra's best amenities, ski access, and local attractions. The open-plan kitchen connects seamlessly to the dining and living spaces, all bathed in natural light through floor-to-ceiling windows.",
+  description: DEMO_DESCRIPTION,
   amenities: [
     "Underfloor Heating", "In-unit Laundry", "Hardwood Floors",
     "Stainless Appliances", "Private Balcony", "Covered Parking",
@@ -143,10 +142,9 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
     .filter((p) => p._id !== property._id && p.status === "for_sale")
     .slice(0, 3);
 
-  const propertyUrl = localizedUrl(
-    locale,
-    `/listings/${localizedSlug(property.slug.current, locale, property.translations)}`
-  );
+  const slug = localizedSlug(property.slug.current, locale, property.translations);
+  const propertyUrl = localizedUrl(locale, `/listings/${slug}`);
+  const pdfUrl = `/api/listings/${slug}/pdf?locale=${locale}`;
 
   return (
     <div className="bg-background pt-[68px]">
@@ -287,6 +285,15 @@ export default function PropertyDetail({ property }: { property: PropertyFull })
                 {property.location}
               </p>
               <div className="flex items-center gap-2 flex-shrink-0">
+                <a
+                  href={pdfUrl}
+                  download
+                  title={t("download_pdf")}
+                  aria-label={t("download_pdf")}
+                  className="w-8 h-8 flex items-center justify-center rounded-full border border-border text-muted hover:text-foreground hover:border-foreground/30 transition-colors"
+                >
+                  <Download size={13} />
+                </a>
                 <button className="w-8 h-8 flex items-center justify-center rounded-full border border-border text-muted hover:text-foreground hover:border-foreground/30 transition-colors">
                   <Share2 size={13} />
                 </button>

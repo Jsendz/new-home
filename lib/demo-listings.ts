@@ -130,3 +130,10 @@ export const DEMO_LISTINGS: ListingProperty[] = [
     image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=900&q=80",
   },
 ];
+
+// Fallback copy for a real property with no description filled in yet.
+// Shared (rather than living in PropertyDetail.tsx) so server-only code
+// like the PDF route can use it too — a "use client" module's exports
+// aren't safely importable from plain server code.
+export const DEMO_DESCRIPTION =
+  "A bright, mountain-inspired home offering modern interiors, spacious living areas, and elegant finishes throughout. Ideal for buyers seeking comfort, style, and a well-located property close to Andorra's best amenities, ski access, and local attractions. The open-plan kitchen connects seamlessly to the dining and living spaces, all bathed in natural light through floor-to-ceiling windows.";
